@@ -1,0 +1,42 @@
+{
+    "name": "masterflash-ru/statpage",
+    "description": "Просто страницы для системы управления Simba",
+    "type": "Service",
+    "license": "BSD-3-Clause",
+    "keywords": [
+        "masterflash",
+		"simba"
+    ],
+    "homepage": "https://masterflash.ru/",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^7.0",
+        "zendframework/zend-cache": "^2.7",
+        "zendframework/zend-mvc": "^3.0.0",
+		"zendframework/zend-serializer": "^2.5",
+		"zendframework/zend-hydrator": "^2.1",
+		"zendframework/zend-router": "^3.0",
+        "masterflash-ru/ado": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Statpage\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Statpage\\": "src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.0",
+            "dev-develop": "1.0.0-dev"
+        },
+        "zf": {
+            "component": "Statpage",
+            "config-provider": "masterflash-ru\\Statpage\\ConfigProvider"
+        }
+    }
+}
