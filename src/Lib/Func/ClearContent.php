@@ -6,14 +6,12 @@ class ClearContent
 
 {
 	
-public function __invoke($obj,$infa,$struct_arr,$pole_type,$pole_dop,$tab_name,$idname,$const,$id,$action)
+public function __invoke($obj,$infa,$struct_arr,$pole_type,$pole_dop,$tab_name,$pole_id,$const,$id,$action)
 {
 
-
-$const=explode(',',$obj->struct2['pole_global_const'][1]);
+if (empty($infa)){return $infa;}
 $f=$const[1].DIRECTORY_SEPARATOR.$infa;
 $data=file_get_contents($f);
-
 
 $data=$this->strip_only($data,'<font>',false);
 

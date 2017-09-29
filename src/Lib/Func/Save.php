@@ -15,8 +15,6 @@ public function __invoke($obj,$tab_rec,$struct0,$struct2,$tab_name,$const,$row_i
 //запись строки
 if ($action==-2)
 	{
-		//$arr=simba::queryOneRecord("select max(id) as id from tovar_category where language=@language");
-
 		$rs=new RecordSet();
 		$rs->CursorType = adOpenKeyset;
 		$rs->open("SELECT * FROM statpage",$obj->connection);

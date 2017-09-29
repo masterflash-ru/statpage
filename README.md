@@ -2,4 +2,9 @@
 выводит не связанные страницы в системе управления Simba
 
 Установка
-composer require masterflash-ru/statpage
+1. composer require masterflash-ru/statpage
+2. загрузить дамп sql в mysql базу приложения в из папки data
+3. в админке создать пункт меню, например, "Просто страницы", привязать к этому пункту /adm/line/statpage
+
+просто страницы доступны по адресу /page/URL_страницы
+

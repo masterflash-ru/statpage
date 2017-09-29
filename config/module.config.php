@@ -9,7 +9,6 @@ use Zend\Router\Http\Segment;
 
 
 
-
 return [
 	//маршруты
     'router' => [
@@ -61,6 +60,7 @@ return [
     'view_manager' => [
         'template_path_stack' => [
             __DIR__ . '/../view',
+			__DIR__ . '/../../../../data/statpage/tpl',	//папка для поиска дополнительных шаблонов
         ],
     ],
 	"statpage"=>[

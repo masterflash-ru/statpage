@@ -40,7 +40,10 @@ public function indexAction()
 		$this->statpage_service->SetLocale($locale);					//новая локаль
 		$this->statpage_service->SetPageType(Statpage::PUBLIC);			//публичные
 		$page=$this->statpage_service->LoadFromUrl($url);				//URL страницы (транслит имени)
-		return new ViewModel(["page"=>$page]);
+		
+		$view=new ViewModel(["page"=>$page]);
+		if  ($page->getTpl()) {$view->setTemplate($page->getTpl()) ;}
+		return $view;
 	}
 	catch (\Exception $e) 
 		{
