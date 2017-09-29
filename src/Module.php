@@ -1,12 +1,12 @@
 <?php
 /**
+модуль обработки просто страниц системы Simba
  */
 
 namespace Statpage;
 
 use Zend\Mvc\MvcEvent;
 use Zend\Session\Container;
-use Admin\Service\AuthManager;
 use Zend\EventManager\Event;
 
 use Statpage\Service\GetControllersInfo;
@@ -22,37 +22,12 @@ public function getConfig()
 
 public function onBootstrap(MvcEvent $event)
 {
-    
 	$eventManager = $event->getApplication()->getEventManager();
     $sharedEventManager = $eventManager->getSharedManager();
     // объявление слушателя для проверки авторизации админа 
-   // $sharedEventManager->attach(__NAMESPACE__, MvcEvent::EVENT_DISPATCH, [$this, 'onDispatch'], 100);
-	
-	//слушатель для получения списка описания контроллеров, методов для виуазльного создания меню
-	//$sharedEventManager->attach("simba.admin", "GetControllersInfoAdmin", [$this, 'GetControllersInfoAdmin']);
-
+	$sharedEventManager->attach("simba.admin", "GetControllersInfoAdmin", [$this, 'GetControllersInfoAdmin']);
 }
 
-/*слушатель для проверки авторизован ли админ*/
-public function onDispatch(MvcEvent $event)
- {
-        $controller = $event->getTarget();
-        $controllerName = $event->getRouteMatch()->getParam('controller', null);
-        $actionName = $event->getRouteMatch()->getParam('action', null);
-
-	//  \Zend\Debug\Debug::dump(get_class_methods ($event->getApplication()->getMvcEvent()->getController() ));
-/*
-	    if ($controllerName!="Admin\Controller\LoginController")
-        {
-       		$authManager = $event->getApplication()->getServiceManager()->get(AuthManager::class);
-
-            $result = $authManager->filterAccess($controllerName, $actionName);
-           
-           if ($result==AuthManager::AUTH_REQUIRED) {return $controller->redirect()->toRoute('admin');}
-            	else if ($result==AuthManager::ACCESS_DENIED) {return $controller->redirect()->toRoute('admin403');}
-	
-		}   */
-}
 
 /*
 слушает событие GetControllersInfoAdmin 
@@ -67,7 +42,7 @@ public function GetControllersInfoAdmin(Event $event)
 	$container=$event->getParam("container",NULL);
 	
 	//сервис который будет возвращать
-	$service=$container->build("Statpage\Service\GetControllersInfo",["name"=>$name]);
+	$service=$container->build(GetControllersInfo::class,["name"=>$name]);
 	return $service->GetDescriptors();
 }
 

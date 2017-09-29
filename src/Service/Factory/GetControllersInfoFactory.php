@@ -1,8 +1,8 @@
 <?php
-namespace Admin\Service\Factory;
+namespace Statpage\Service\Factory;
 
 use Interop\Container\ContainerInterface;
-use Admin\Service\GetControllersInfo;
+use Statpage\Service\GetControllersInfo;
 
 /*
 Фабрика 
