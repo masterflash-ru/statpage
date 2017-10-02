@@ -13,12 +13,10 @@ use Statpage\Service\Statpage;
 
 class IndexController extends AbstractActionController
 {
-	protected $connection;
 	protected $statpage_service;
 
-public function __construct ($connection,$statpage_service)
+public function __construct ($statpage_service)
 	{
-		$this->connection=$connection;
 		$this->statpage_service=$statpage_service;
 	}
 
