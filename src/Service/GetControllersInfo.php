@@ -5,7 +5,7 @@ namespace Statpage\Service;
 сервис обработки прерывания GetControllersInfoAdmin simba.admin
 нужен для генерации ссылок для подстановки в меню сайта или админки для визуализации выбора
 ВНИМАНИЕ!
-возвращаются не ссылки, а спец массив с данными MVC
+возвращаются и ссылки, и спец массив с данными MVC
 
 */
 
@@ -22,13 +22,12 @@ class GetControllersInfo
 		$this->Router=$Router;
 		$this->options=$options;
 		$this->connection=$connection;
-		//\Zend\Debug\Debug::dump(get_class($container->get("Application")  ));
     }
     
 	
 	public function GetDescriptors()
 	{
-		//данный модуль содержит только админксие описатели
+		//данный модуль содержит только сайтовские описатели описатели
 		if ($this->options["name"]) {return [];}
 
 		//Линейные таблицы

@@ -14,9 +14,10 @@ class IndexControllerFactory implements FactoryInterface
 {
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
+        $connection=$container->get('ADO\Connection');
 		$statpage_service=$container->get(Statpage::class);
 		
-		return new IndexController($statpage_service);
+		return new IndexController( $connection,$statpage_service);
     }
 }
 
