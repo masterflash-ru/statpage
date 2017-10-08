@@ -39,8 +39,8 @@ INSERT INTO `design_tables` (`interface_name`, `table_name`, `table_type`, `col_
   ('statpage', 'statpage', 0, '1', '', 3, 0, '', '', ',', '17', '', 'save,del', '', '', '', '', '', 'a:4:{i:0;s:1:\"1\";i:1;s:1:\"0\";i:2;s:33:\"Сохранить,Удалить\";i:3;s:1:\"0\";}', '', 'N;', 0, 'N;'),
   ('statpage', 'statpage', 0, 'language', '', 2, 0, '', '', '', '0', '', 'pole_dop0', '', '', '', '', '', '', '', '', 0, ''),
   ('statpage', 'statpage', 0, 'language', '', 3, 0, '', '0,0', '', '0', '', 'pole_dop0', '', '', '', '', '', '', '', '', 0, ''),
-  ('statpage', 'statpage', 0, 'page_type', '', 2, 4, 'create temporary table sp (id int(11), name char(40)) ENGINE=MEMORY DEFAULT CHARSET=utf8; insert into sp (id,name) values (0,''Не опубликовано''),(1,''Публиковать на сайте''),(2,''Использовать для внутренних целей''); select * from sp', '', '', '4', '', 'page_type', '', '', '', '', '', 'a:2:{i:0;s:1:\"0\";i:1;s:1:\"0\";}', '', 'N;', 0, 'N;'),
-  ('statpage', 'statpage', 0, 'page_type', '', 3, 0, ' select * from sp', '', '', '4', '', 'page_type', '', '', '', '', '', 'a:2:{i:0;s:1:\"0\";i:1;s:1:\"0\";}', '', 'N;', 0, 'N;'),
+  ('statpage', 'statpage', 0, 'page_type', '', 2, 4, '', '', '', '4', '', 'page_type', '', '', '', '\\Statpage\\Lib\\Func\\GetPageType', '', 'a:2:{i:0;s:1:\"0\";i:1;s:1:\"0\";}', '', 'N;', 0, 'N;'),
+  ('statpage', 'statpage', 0, 'page_type', '', 3, 0, '', '', '', '4', '', 'page_type', '', '', '', '\\Statpage\\Lib\\Func\\GetPageType', '', 'a:2:{i:0;s:1:\"0\";i:1;s:1:\"0\";}', '', 'N;', 0, 'N;'),
   ('statpage', 'statpage', 0, 'sysname', '', 2, 2, '', '', 'size=80', '2', '', 'sysname', '', '', '', '', '', 'N;', '', 'N;', 0, 'N;');
 
 INSERT INTO `design_tables_text_interfase` (`language`, `table_type`, `interface_name`, `item_name`, `text`) VALUES 
