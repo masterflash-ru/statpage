@@ -13,10 +13,7 @@
     "require": {
         "php": "^7.0",
         "zendframework/zend-cache": "^2.7",
-        "zendframework/zend-mvc": "^3.0.0",
         "zendframework/zend-serializer": "^2.5",
-        "zendframework/zend-hydrator": "^2.1",
-        "zendframework/zend-router": "^3.0",
         "masterflash-ru/ado": "^1.0"
     },
     "autoload": {

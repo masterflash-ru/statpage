@@ -31,17 +31,18 @@ class GetControllersInfo
 	{
 		//данный модуль содержит только сайтовские описатели описатели
 		if ($this->options["name"]) {return [];}
+		if (!isset($this->options["locale"])) {$this->options["locale"]=$this->config["locale_default"];}
 
 		//Линейные таблицы
 		$info["page"]["description"]="Просто страницы (опубликованные)";
 		$rez['name']=[];
 		$rez['url']=[];
 		$rez['mvc']=[];
-		foreach ($this->config["locale_enable_list"] as $locale)
-			{//цикл по локалям
-				$rs=$this->connection->Execute("select name,url from statpage_text,statpage where page_type=1  and statpage.id=statpage_text.statpage and locale='$locale' order by name");
-				if ($locale==$this->config["locale_default"]) {$locale=NULL;}
-				while (!$rs->EOF)
+		$locale=$this->options["locale"];
+		
+		$rs=$this->connection->Execute("select name,url from statpage_text,statpage where page_type=1  and statpage.id=statpage_text.statpage and locale='$locale' order by name");
+		if ($locale==$this->config["locale_default"]) {$locale=NULL;}
+			while (!$rs->EOF)
 					{
 						$url = $this->Router->assemble(["page"=>$rs->Fields->Item["url"]->Value,"locale"=>$locale], ['name' => 'page']);
 						$mvc=[
@@ -55,7 +56,6 @@ class GetControllersInfo
 						$rez["url"][]=$url;
 						$rs->MoveNext();
 					}
-			}
 		$info["page"]["urls"]=$rez;
 		
 		return $info;
