@@ -21,7 +21,8 @@ public function __invoke(ContainerInterface $container, $requestedName, array $o
     {
 		$connection=$container->get('ADO\Connection');
        $Router=$container->get("Application")->getMvcEvent()->getRouter();
-        return new GetControllersInfo($connection,$Router,$options);
+	   $config = $container->get('Config');
+        return new GetControllersInfo($connection,$Router,$config,$options);
     }
 }
 

@@ -15,13 +15,15 @@ class GetControllersInfo
 	protected $Router;
 	protected $options;
 	protected $connection;
+	protected $config;
 	
-    public function __construct($connection,$Router,$options) 
+    public function __construct($connection,$Router,$config,$options) 
     {
 		
 		$this->Router=$Router;
 		$this->options=$options;
 		$this->connection=$connection;
+		$this->config=$config;
     }
     
 	
@@ -32,22 +34,27 @@ class GetControllersInfo
 
 		//Линейные таблицы
 		$info["page"]["description"]="Просто страницы (опубликованные)";
-		$rs=$this->connection->Execute("select name,url from statpage_text,statpage where page_type=1  and statpage.id=statpage_text.statpage order by name");
 		$rez['name']=[];
 		$rez['url']=[];
 		$rez['mvc']=[];
-		while (!$rs->EOF)
-			{
-				$url = $this->Router->assemble(["page"=>$rs->Fields->Item["url"]->Value], ['name' => 'page']);
-				$mvc=[
-						"route"=>"page",
-						'params'=>["page"=>$rs->Fields->Item["url"]->Value]
-					];
-				
-				$rez["name"][]=$rs->Fields->Item["name"]->Value;
-				$rez["mvc"][]= serialize($mvc);
-				$rez["url"][]=$url;
-				$rs->MoveNext();
+		foreach ($this->config["locale_enable_list"] as $locale)
+			{//цикл по локалям
+				$rs=$this->connection->Execute("select name,url from statpage_text,statpage where page_type=1  and statpage.id=statpage_text.statpage and locale='$locale' order by name");
+				if ($locale==$this->config["locale_default"]) {$locale=NULL;}
+				while (!$rs->EOF)
+					{
+						$url = $this->Router->assemble(["page"=>$rs->Fields->Item["url"]->Value,"locale"=>$locale], ['name' => 'page']);
+						$mvc=[
+								"route"=>"page",
+								'params'=>["page"=>$rs->Fields->Item["url"]->Value,"locale"=>$locale],
+							];
+						if(empty($locale)) {$l=" локаль по умолчанию - ".$this->config["locale_default"];}
+							else {$l=$locale;}
+						$rez["name"][]=$rs->Fields->Item["name"]->Value." - ".$l;
+						$rez["mvc"][]= serialize($mvc);
+						$rez["url"][]=$url;
+						$rs->MoveNext();
+					}
 			}
 		$info["page"]["urls"]=$rez;
 		

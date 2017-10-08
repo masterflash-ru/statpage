@@ -5,7 +5,7 @@
     "license": "BSD-3-Clause",
     "keywords": [
         "masterflash",
-		"simba"
+        "simba"
     ],
     "homepage": "https://masterflash.ru/",
     "minimum-stability": "dev",
@@ -14,10 +14,10 @@
         "php": "^7.0",
         "zendframework/zend-cache": "^2.7",
         "zendframework/zend-mvc": "^3.0.0",
-		"zendframework/zend-serializer": "^2.5",
-		"zendframework/zend-hydrator": "^2.1",
-		"zendframework/zend-router": "^3.0",
-        "masterflash-ru/ado": "*"
+        "zendframework/zend-serializer": "^2.5",
+        "zendframework/zend-hydrator": "^2.1",
+        "zendframework/zend-router": "^3.0",
+        "masterflash-ru/ado": "^1.0"
     },
     "autoload": {
         "psr-4": {
@@ -31,8 +31,8 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0.0-dev",
-            "dev-develop": "1.0.0-dev"
+            "dev-master": "1.0-dev",
+            "dev-develop": "1.0-dev"
         },
         "zf": {
             "component": "Statpage",

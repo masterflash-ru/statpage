@@ -21,6 +21,7 @@ return [
                     'route'    => '[/:locale]/page/:page',
 					'constraints' => [
                                			 'page' => '[a-zA-Z0-9_-]+',
+										 'locale' => '[a-zA-Z0-9_-]+',
                            			 ],
                     'defaults' => [
                         'controller' => Controller\IndexController::class,
