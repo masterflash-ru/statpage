@@ -58,6 +58,17 @@ return [
     ],
 */
 
+    'view_helpers' => [
+        'factories' => [
+            View\Helper\Statpage::class => View\Helper\Factory\Statpage::class,
+        ],
+        'aliases' => [
+            'Statpage' => View\Helper\Statpage::class,
+			'statpage' => View\Helper\Statpage::class,
+			
+        ],
+    ],
+
     'view_manager' => [
         'template_path_stack' => [
             __DIR__ . '/../view',
@@ -68,10 +79,5 @@ return [
 		'data_folder'=>"data/statpage/content",	//файлы с html контентом
 		'tpl_folder'=>"data/statpage/tpl",		//шаблоны вывода контента
 		'media_folder'=>"media",				//имя папки в public для размещения медиаматериала
-		'status'=>[
-			0=>"Не опубликовано",
-			1=>"Опубликовано на сайте",
-			2=>"Для внутренних целей"
-		],
 	]
 ];
