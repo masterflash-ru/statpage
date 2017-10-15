@@ -18,7 +18,7 @@ return [
             'page' => [
                 'type' => Segment::class,
                 'options' => [
-                    'route'    => '[/:locale]/page/:page',
+                    'route'    => '/page/:page',
 					'constraints' => [
                                			 'page' => '[a-zA-Z0-9_-]+',
 										 'locale' => '[a-zA-Z0-9_-]+',
@@ -79,5 +79,10 @@ return [
 		'data_folder'=>"data/statpage/content",	//файлы с html контентом
 		'tpl_folder'=>"data/statpage/tpl",		//шаблоны вывода контента
 		'media_folder'=>"media",				//имя папки в public для размещения медиаматериала
+		'status'=>[
+			0=>"Не опубликовано",
+			1=>"Опубликовано",
+			2=>"Для внутренних целей"
+		]
 	]
 ];
