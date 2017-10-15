@@ -38,20 +38,22 @@ class GetControllersInfo
 		$rez['name']=[];
 		$rez['url']=[];
 		$rez['mvc']=[];
-		$locale=$this->options["locale"];
 		
-		$rs=$this->connection->Execute("select name,url from statpage_text,statpage where page_type=1  and statpage.id=statpage_text.statpage and locale='$locale' order by name");
-		if ($locale==$this->config["locale_default"]) {$locale=NULL;}
+		
+		$rs=$this->connection->Execute("select name,url from statpage_text,statpage where page_type=1  and statpage.id=statpage_text.statpage and locale='{$this->options["locale"]}' order by name");
+		
 			while (!$rs->EOF)
 					{
-						$url = $this->Router->assemble(["page"=>$rs->Fields->Item["url"]->Value,"locale"=>$locale], ['name' => 'page']);
+						$locale=$this->options["locale"];
+						$url = $this->Router->assemble(["page"=>$rs->Fields->Item["url"]->Value], ['name' => 'page_'.$locale]);
 						$mvc=[
-								"route"=>"page",
-								'params'=>["page"=>$rs->Fields->Item["url"]->Value,"locale"=>$locale],
+								"route"=>"page_".$locale,
+								'params'=>["page"=>$rs->Fields->Item["url"]->Value],
 							];
-						if(empty($locale)) {$l=" локаль по умолчанию - ".$this->config["locale_default"];}
-							else {$l=$locale;}
-						$rez["name"][]=$rs->Fields->Item["name"]->Value." - ".$l;
+						if($locale==$this->config["locale_default"]) {$locale=" локаль по умолчанию - ".$this->config["locale_default"];}
+
+						
+						$rez["name"][]=$rs->Fields->Item["name"]->Value." - ".$locale;
 						$rez["mvc"][]= serialize($mvc);
 						$rez["url"][]=$url;
 						$rs->MoveNext();

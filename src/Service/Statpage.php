@@ -106,19 +106,6 @@ protected function Load($url,$type="url")
     return $page;
 	}
   
-/*мультиязычность разрешена?
-возвращает true|false
-если опция "locale_enable_list" массив больше 1 элемента, то мультиязычность ДА
-*/  
-public function isMultiLocale()
-{
-	if (!isset($this->config["locale_enable_list"])) {return false;}
-	if (isset($this->config["locale_enable_list"]) && is_array($this->config["locale_enable_list"]) 
-		&& count($this->config["locale_enable_list"])>1) {return true;}
-	return false;
-}
-
-
 
   
   /*устновить тип считываемых страниц*/

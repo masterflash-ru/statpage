@@ -7,7 +7,10 @@ namespace Statpage;
 
 use Zend\Router\Http\Segment;
 
-
+/*
+для других языков создайте дополнительные маршрутя по аналогии с ru_RU
+обязательно в имени маршрута должна быть локаль
+*/
 
 return [
 	//маршруты
@@ -15,17 +18,17 @@ return [
         'routes' => [
 			
 			//маршрут для варианта с одним языком
-            'page' => [
+            'page_ru_RU' => [
                 'type' => Segment::class,
                 'options' => [
                     'route'    => '/page/:page',
 					'constraints' => [
                                			 'page' => '[a-zA-Z0-9_-]+',
-										 'locale' => '[a-zA-Z0-9_-]+',
                            			 ],
                     'defaults' => [
                         'controller' => Controller\IndexController::class,
                         'action'     => 'index',
+						'locale'	=> 'ru_RU'
                     ],
                 ],
 			],
