@@ -17,16 +17,36 @@ class Statpage extends AbstractHelper
 /*
 собственно вызов помощника
 $sysname - системное имя в просто страницах,
+Опции:
 $locale - строка локали, по умолчанию "ru_RU",
 $page_type  - тип страницы, по умолчанию 2 (Statpage_service::SPECIAL), 
 $flag_seo - заполнять СЕО-теги извлекаемой страницы, по умолчанию false (нет)
 */
-public function __invoke($sysname,$locale="ru_RU",$page_type=Statpage_service::SPECIAL, $flag_seo=false)
+public function __invoke($sysname,array $options=null)//$locale="ru_RU",$page_type=Statpage_service::SPECIAL, $flag_seo=false)
 {
+    if (isset($options["locale"])) {
+        $locale=$options["locale"];
+    }else {
+        $locale="ru_RU";
+    }
+   
+    if (isset($options["type"])) {
+        $type=(int)$options["type"];
+    }else {
+        $type=Statpage_service::SPECIAL;
+    }
+    
+    if (isset($options["seo"])) {
+        $flag_seo=(bool)$options["seo"];
+    }else {
+        $flag_seo=false;
+    }
+    
+    
 	try
 		{
 			$this->statpage_service->SetLocale($locale);					//новая локаль
-			$this->statpage_service->SetPageType($page_type);			//публичные
+			$this->statpage_service->SetPageType($type);			//публичные
 			$page=$this->statpage_service->LoadFromSysname($sysname);				//URL страницы (транслит имени)
 			echo $page->getContent();
 			if ($flag_seo) {
