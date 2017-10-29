@@ -79,7 +79,6 @@ return [
         ],
     ],
 	"statpage"=>[
-		'data_folder'=>"data/statpage/content",	//файлы с html контентом
 		'tpl_folder'=>"data/statpage/tpl",		//шаблоны вывода контента
 		'media_folder'=>"media",				//имя папки в public для размещения медиаматериала
 		'status'=>[

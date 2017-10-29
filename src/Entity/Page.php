@@ -12,7 +12,6 @@ class Page
 	protected $url;
 	protected $sysname;
 	protected $page_type;
-	protected $file_name;
 	protected $locale;
 	protected $tpl;
 	protected $content;
@@ -102,16 +101,6 @@ class Page
         $this->page_type = $page_type;
     }
    
-   public function getFile_Name() 
-    {
-        return $this->file_name;
-    }
-
-    public function setFile_Name($file_name) 
-    {
-        $this->file_name = $file_name;
-    }
-
    public function getLocale() 
     {
         return $this->locale;

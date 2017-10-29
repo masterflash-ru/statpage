@@ -27,10 +27,8 @@ class Statpage
         $this->connection = $connection;
         $this->cache = $cache;
 		$this->config=$config;
-		$this->page_type=self::PUBLIC;
+		$this->page_type=Statpage::PUBLIC;
 		$this->locale=$config["locale_default"];
-
-		//\Zend\Debug\Debug::dump($config);
     }
     
 
@@ -87,18 +85,6 @@ protected function Load($url,$type="url")
 			$resultSet->initialize($rs);
 		   
 		   $page=$resultSet->current();
-		   $file=rtrim($this->config["statpage"]['data_folder'],DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR.$page->GetFile_name();
-       		if (!is_readable($file))
-				{
-						throw new Exception\FileNotFoundException('Файл '.$file.' не найден');
-				}
-       		if (!$page->GetFile_name())
-				{
-						throw new Exception\EmptyException("Запись $url не найдена");
-				}
-			
-			//читаем сам файл
-			$page->SetContent(file_get_contents($file ));
             //сохраним в кеш
             $this->cache->setItem($key, $page);
 			$this->cache->setTags($key,["statpage"]);
@@ -111,7 +97,7 @@ protected function Load($url,$type="url")
   /*устновить тип считываемых страниц*/
 public function SetPageType($page_type)
 {
-	if (!in_array($page_type,[self::NONPUBLIC,self::SPECIAL,self::PUBLIC])) {throw new Exception\InvalidPageTypeException("Не поддерживаемый тип страниц");}
+	if (!in_array($page_type,[Statpage::NONPUBLIC,Statpage::SPECIAL,Statpage::PUBLIC])) {throw new Exception\InvalidPageTypeException("Не поддерживаемый тип страниц");}
 	$this->page_type=$page_type;
 }
 

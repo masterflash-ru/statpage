@@ -10,12 +10,8 @@ public function __invoke($obj,$infa,$struct_arr,$pole_type,$pole_dop,$tab_name,$
 {
 
 if (empty($infa)){return $infa;}
-$f=$const[1].DIRECTORY_SEPARATOR.$infa;
-$data=file_get_contents($f);
 
-$data=$this->strip_only($data,'<font>',false);
-
-file_put_contents($f,$data);
+$data=$this->strip_only($infa,'<font>',false);
 
 return $infa;
 

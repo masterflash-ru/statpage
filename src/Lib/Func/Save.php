@@ -36,7 +36,7 @@ if ($action==-2)
 				$rst->Fields->Item['title']->Value=$tab_rec['title'];
 				$rst->Fields->Item['description']->Value=$tab_rec['description'];
 				$rst->Fields->Item['keywords']->Value=$tab_rec['keywords'];
-				$rst->Fields->Item['file_name']->Value=$tab_rec['file_name'];
+				$rst->Fields->Item['content']->Value=$tab_rec['content'];
 				$rst->Fields->Item['title']->Value=$tab_rec['title'];
 				
 				$rst->Fields->Item['description']->Value=$tab_rec['description'];
@@ -70,7 +70,7 @@ if ($action==-2)
 				$rst->Fields->Item['title']->Value=$tab_rec['title'];
 				$rst->Fields->Item['description']->Value=$tab_rec['description'];
 				$rst->Fields->Item['keywords']->Value=$tab_rec['keywords'];
-				$rst->Fields->Item['file_name']->Value=$tab_rec['file_name'];
+				$rst->Fields->Item['content']->Value=$tab_rec['content'];
 	
 				$rs->Update();
 				$rst->Update();

@@ -26,12 +26,12 @@ INSERT INTO `design_tables` (`interface_name`, `table_name`, `table_type`, `col_
   ('statpage', 'statpage', 0, 'keywords', '', 2, 11, '', '', 'cols=130 rows=3', '3', '', 'keywords', '', '', '', '', '', 'N;', '', 'N;', 0, 'N;'),
   ('statpage', 'statpage', 0, 'keywords', '', 3, 0, '', '', 'cols=130 rows=3', '3', '2', 'keywords', '', '', '', '', '', 'N;', '', 'N;', 0, 'N;'),
   ('statpage', 'statpage', 0, 'description', '', 2, 12, '', '', 'cols=130 rows=3', '3', '', 'description', '', '', '', '', '', 'N;', '', 'N;', 0, 'N;'),
-  ('statpage', 'statpage', 0, 'name,file_name,keywords,description,title,tpl,page_type', 'statpage', 0, 1, 'select statpage.*,\r\n(select title from statpage_text where locale=''$pole_dop0'' and statpage_text.statpage=statpage.id) as title ,\r\n(select keywords from statpage_text where locale=''$pole_dop0'' and statpage_text.statpage=statpage.id) as keywords,\r\n(select description from statpage_text where locale=''$pole_dop0'' and statpage_text.statpage=statpage.id) as description,\r\n(select file_name from statpage_text where locale=''$pole_dop0'' and statpage_text.statpage=statpage.id) as file_name,\r\n(select tpl from statpage_text where locale=''$pole_dop0'' and statpage_text.statpage=statpage.id) as tpl,\r\n(select page_type from statpage_text where locale=''$pole_dop0'' and statpage_text.statpage=statpage.id) as page_type\r\n\r\nfrom statpage order by name', '', '0,0,0,0', 'name', '0', 'id', 'delete from statpage  where id=$id;\r\ndelete from statpage_text where statpage=$id', '', '', '', '', 'Statpage\\Lib\\Func\\Save', 0x613A323A7B733A32343A22666F726D5F656C656D656E74735F6E65775F7265636F7264223B733A313A2231223B733A32343A22666F726D5F656C656D656E74735F6A6D705F7265636F7264223B733A313A2231223B7D, 'statpage', 1, ''),
+  ('statpage', 'statpage', 0, 'name,content,keywords,description,title,tpl,page_type', '', 0, 1, 'select statpage.*,\r\n(select title from statpage_text where locale=''$pole_dop0'' and statpage_text.statpage=statpage.id) as title ,\r\n(select keywords from statpage_text where locale=''$pole_dop0'' and statpage_text.statpage=statpage.id) as keywords,\r\n(select description from statpage_text where locale=''$pole_dop0'' and statpage_text.statpage=statpage.id) as description,\r\n(select content from statpage_text where locale=''$pole_dop0'' and statpage_text.statpage=statpage.id) as content,\r\n(select tpl from statpage_text where locale=''$pole_dop0'' and statpage_text.statpage=statpage.id) as tpl,\r\n(select page_type from statpage_text where locale=''$pole_dop0'' and statpage_text.statpage=statpage.id) as page_type\r\n\r\nfrom statpage order by name', '', '0,0,0,0', 'name', '0', 'id', 'delete from statpage  where id=$id;\r\ndelete from statpage_text where statpage=$id', '', '', '', '', 'Statpage\\Lib\\Func\\Save', 0x613A323A7B733A32343A22666F726D5F656C656D656E74735F6E65775F7265636F7264223B733A313A2231223B733A32343A22666F726D5F656C656D656E74735F6A6D705F7265636F7264223B733A313A2231223B7D, 'statpage', 1, ''),
   ('statpage', 'statpage', 0, '', '', 1, 0, '', '', 'onChange=this.form.submit()', '4', '', '', '', '', '', 'Statpage\\Lib\\Func\\GetLocales', '', 'a:2:{i:0;s:1:\"0\";i:1;s:1:\"0\";}', '', '', 0, ''),
   ('statpage', 'statpage', 0, 'name', '', 2, 1, '', '', 'size=80', '2', '', 'name', '', '', '', '', '', 'N;', '', 'N;', 0, 'N;'),
   ('statpage', 'statpage', 0, 'name', '', 3, 0, '', '', 'size=80', '2', '2', 'name', '', '', '', '', '', 'N;', '', 'N;', 0, 'N;'),
-  ('statpage', 'statpage', 0, 'file_name', '', 2, 6, '', '[\"statpage\"][''media_folder''],[\"statpage\"][''data_folder'']', '', '36', '', 'file_name', '', '', 'Statpage\\Lib\\Func\\ClearContent', '', '', 'a:6:{i:0;s:3:\"600\";i:1;s:3:\"800\";i:2;s:7:\"default\";i:3;s:7:\"default\";i:4;s:13:\"statpage_text\";i:5;s:8:\"statpage\";}', '', 'N;', 0, 'N;'),
-  ('statpage', 'statpage', 0, 'file_name', '', 3, 0, '', '[\"statpage\"][''media_folder''],[\"statpage\"][''data_folder'']', '', '36', '', 'file_name', '', '', 'Statpage\\Lib\\Func\\ClearContent', '', '', 'a:6:{i:0;s:3:\"600\";i:1;s:3:\"800\";i:2;s:7:\"default\";i:3;s:7:\"default\";i:4;s:13:\"statpage_text\";i:5;s:8:\"statpage\";}', '', 'N;', 0, 'N;'),
+  ('statpage', 'statpage', 0, 'content', '', 2, 6, '', '[\"statpage\"][''media_folder'']', ',', '39', '', 'content', '', '', 'Statpage\\Lib\\Func\\ClearContent', '', '', 'a:4:{i:0;s:3:\"600\";i:1;s:3:\"800\";i:2;s:7:\"default\";i:3;s:7:\"default\";}', '', 'N;', 0, 'N;'),
+  ('statpage', 'statpage', 0, 'content', '', 3, 0, '', '[\"statpage\"][''media_folder'']', ',', '39', '', 'content', '', '', 'Statpage\\Lib\\Func\\ClearContent', '', '', 'a:4:{i:0;s:3:\"600\";i:1;s:3:\"800\";i:2;s:7:\"default\";i:3;s:7:\"default\";}', '', 'N;', 0, 'N;'),
   ('statpage', 'statpage', 0, 'description', '', 3, 0, '', '', 'cols=130 rows=3', '3', '2', 'description', '', '', '', '', '', 'N;', '', 'N;', 0, 'N;'),
   ('statpage', 'statpage', 0, 'url', '', 2, 2, '', '', 'size=120', '2', '', 'url', '', 'Statpage\\Lib\\Func\\CreateUrl', '', '', '', 'N;', '', 'N;', 0, 'N;'),
   ('statpage', 'statpage', 0, 'url', '', 3, 0, '', '', 'size=120', '2', '', 'url', '', 'Statpage\\Lib\\Func\\CreateUrl', '', '', '', 'N;', '', 'N;', 0, 'N;'),
@@ -40,11 +40,10 @@ INSERT INTO `design_tables` (`interface_name`, `table_name`, `table_type`, `col_
   ('statpage', 'statpage', 0, 'language', '', 2, 0, '', '', '', '0', '', 'pole_dop0', '', '', '', '', '', '', '', '', 0, ''),
   ('statpage', 'statpage', 0, 'language', '', 3, 0, '', '0,0', '', '0', '', 'pole_dop0', '', '', '', '', '', '', '', '', 0, ''),
   ('statpage', 'statpage', 0, 'page_type', '', 2, 4, '', '', '', '4', '', 'page_type', '', '', '', '\\Statpage\\Lib\\Func\\GetPageType', '', 'a:2:{i:0;s:1:\"0\";i:1;s:1:\"0\";}', '', 'N;', 0, 'N;'),
-  ('statpage', 'statpage', 0, 'page_type', '', 3, 0, '', '', '', '4', '', 'page_type', '', '', '', '\\Statpage\\Lib\\Func\\GetPageType', '', 'a:2:{i:0;s:1:\"0\";i:1;s:1:\"0\";}', '', 'N;', 0, 'N;'),
+  ('statpage', 'statpage', 0, 'page_type', '', 3, 0, '', '', '', '4', '', 'page_type', '', '', '', '\\Statpage\\Lib\\Func\\GetPageType', '', 'a:2:{i:0;s:1:\"0\";i:1;s:1:\"1\";}', '', 'N;', 0, 'N;'),
   ('statpage', 'statpage', 0, 'sysname', '', 2, 2, '', '', 'size=80', '2', '', 'sysname', '', '', '', '', '', 'N;', '', 'N;', 0, 'N;');
 
 INSERT INTO `design_tables_text_interfase` (`language`, `table_type`, `interface_name`, `item_name`, `text`) VALUES 
-  ('ru_RU', 0, 'statpage', 'caption_col_file_name', 'Содержимое страницы'),
   ('ru_RU', 0, 'statpage', 'caption_col_name', 'Имя элемента'),
   ('ru_RU', 0, 'statpage', 'caption_col_sysname', 'Системное имя'),
   ('ru_RU', 0, 'statpage', 'caption_dop_0', 'Язык сайта:'),
@@ -57,7 +56,9 @@ INSERT INTO `design_tables_text_interfase` (`language`, `table_type`, `interface
   ('ru_RU', 0, 'statpage', 'caption_col_1', 'Операция'),
   ('ru_RU', 0, 'statpage', 'caption0', 'ПРОСТО СТРАНИЦЫ'),
   ('ru_RU', 0, 'statpage', 'caption_col_url', 'URL страницы, /page/'),
-  ('ru_RU', 0, 'statpage', 'caption_col_page_type', 'Состояние');
+  ('ru_RU', 0, 'statpage', 'caption_col_page_type', 'Состояние'),
+  ('ru_RU', 0, 'statpage', 'caption_col_content', 'Контент');
+
 
 --
 -- Table structure for table `statpage`
@@ -78,16 +79,6 @@ CREATE TABLE `statpage` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `statpage`
---
-
-LOCK TABLES `statpage` WRITE;
-/*!40000 ALTER TABLE `statpage` DISABLE KEYS */;
-INSERT INTO `statpage` VALUES (1,'404','404','404');
-/*!40000 ALTER TABLE `statpage` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `statpage_text`
 --
 
@@ -103,19 +94,11 @@ CREATE TABLE `statpage_text` (
   `description` varchar(255) NOT NULL DEFAULT '',
   `tpl` char(127) DEFAULT NULL COMMENT 'имя шаблона-контейнера',
   `page_type` int(11) DEFAULT NULL COMMENT 'типа страницы: 1-публиковать на сайте, 0-нет, 2-внутренняя',
+  `content` text COMMENT 'контент страницы',
   PRIMARY KEY (`statpage`,`locale`)
-) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `statpage_text`
---
-
-LOCK TABLES `statpage_text` WRITE;
-/*!40000 ALTER TABLE `statpage_text` DISABLE KEYS */;
-INSERT INTO `statpage_text` VALUES (1,'404.html','ru_RU','Страница с таким адресом не найдена.','Страница с таким адресом не найдена.','Страница с таким адресом не найдена.','',1);
-/*!40000 ALTER TABLE `statpage_text` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Dumping routines for database 'simba4'
