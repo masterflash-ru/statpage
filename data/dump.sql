@@ -87,7 +87,6 @@ DROP TABLE IF EXISTS `statpage_text`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `statpage_text` (
   `statpage` int(11) NOT NULL,
-  `file_name` char(255) NOT NULL COMMENT 'имя файла с содержимым',
   `locale` char(10) NOT NULL COMMENT 'имя локали (ru_RU)',
   `title` varchar(255) NOT NULL DEFAULT '',
   `keywords` varchar(255) NOT NULL DEFAULT '',
