@@ -80,7 +80,7 @@ protected function Load($url,$type="url")
 			$rs=new RecordSet();
 			$rs->CursorType =adOpenKeyset;
 			$rs->Open($c);
-	
+	if ($rs->EOF) {throw new  Exception\EmptyException("Запись в STREAM не найдена");}
 			$resultSet = new HydratingResultSet(new ReflectionHydrator, new Page);
 			$resultSet->initialize($rs);
 		   
@@ -115,7 +115,7 @@ public function SetLocale($locale=NULL)
 			//проверим на допустимость имени локали
 			if (!in_array($locale,$this->config["locale_enable_list"])) 
 				{
-					throw new Exception\EmptyException("Попытка установить не допустимую локаль");
+					throw new \Exception("Попытка установить не допустимую локаль");
 				}
 			$this->locale=$locale;
 		}

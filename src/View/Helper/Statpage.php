@@ -22,7 +22,7 @@ $locale - строка локали, по умолчанию "ru_RU",
 $page_type  - тип страницы, по умолчанию 2 (Statpage_service::SPECIAL), 
 $flag_seo - заполнять СЕО-теги извлекаемой страницы, по умолчанию false (нет)
 */
-public function __invoke($sysname,array $options=null)
+public function __invoke($sysname,array $options=null)//$locale="ru_RU",$page_type=Statpage_service::SPECIAL, $flag_seo=false)
 {
     if (isset($options["locale"])) {
         $locale=$options["locale"];
