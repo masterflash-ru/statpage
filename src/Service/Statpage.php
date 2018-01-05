@@ -66,7 +66,7 @@ protected function Load($url,$type="url")
         //пытаемся считать из кеша
         $result = false;
         $page= $this->cache->getItem($key, $result);
-        if (!$result)
+        if (!$result || true)
         {
             //промах кеша, создаем
 			$c=new Command();
@@ -78,9 +78,9 @@ protected function Load($url,$type="url")
 							from statpage_text,statpage 
 								where page_type={$this->page_type} and statpage.id=statpage_text.statpage and $type=:url and locale='{$this->locale}'";
 			$rs=new RecordSet();
-			$rs->CursorType =adOpenKeyset;
+			//$rs->CursorType =adOpenKeyset;
 			$rs->Open($c);
-	if ($rs->EOF) {throw new  Exception\EmptyException("Запись в STREAM не найдена");}
+	if ($rs->EOF) {throw new  Exception\EmptyException("Запись в STATPAGE не найдена");}
 			$resultSet = new HydratingResultSet(new ReflectionHydrator, new Page);
 			$resultSet->initialize($rs);
 		   

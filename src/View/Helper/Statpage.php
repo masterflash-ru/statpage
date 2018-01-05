@@ -1,5 +1,7 @@
 <?php
 /*
+помощник возвращает содержимое страницы по ее име в виде строки.
+Для вывода в скоипте вида используйте echo
 */
 
 namespace Statpage\View\Helper;
@@ -18,11 +20,12 @@ class Statpage extends AbstractHelper
 собственно вызов помощника
 $sysname - системное имя в просто страницах,
 Опции:
-$locale - строка локали, по умолчанию "ru_RU",
-$page_type  - тип страницы, по умолчанию 2 (Statpage_service::SPECIAL), 
-$flag_seo - заполнять СЕО-теги извлекаемой страницы, по умолчанию false (нет)
+locale - строка локали, по умолчанию "ru_RU",
+page_type  - тип страницы, по умолчанию 2 (Statpage_service::SPECIAL), 
+flag_seo - заполнять СЕО-теги извлекаемой страницы, по умолчанию false (нет)
+err_mode - что делать при ошибке: empty - вернуть "" (по умолчанию), exception - исключение
 */
-public function __invoke($sysname,array $options=null)//$locale="ru_RU",$page_type=Statpage_service::SPECIAL, $flag_seo=false)
+public function __invoke($sysname,array $options=null)
 {
     if (isset($options["locale"])) {
         $locale=$options["locale"];
@@ -41,22 +44,26 @@ public function __invoke($sysname,array $options=null)//$locale="ru_RU",$page_ty
     }else {
         $flag_seo=false;
     }
-    
+    if (!isset($options["err_mode"])){$options["err_mode"]="empty";}
     
 	try
 		{
 			$this->statpage_service->SetLocale($locale);					//новая локаль
 			$this->statpage_service->SetPageType($type);			//публичные
 			$page=$this->statpage_service->LoadFromSysname($sysname);				//URL страницы (транслит имени)
-			echo $page->getContent();
+			
 			if ($flag_seo) {
 				$view=$this->getView();
 				$view->headTitle($page->GetTitle());
 				$view->headMeta()->appendName('keywords', $page->GetKeywords());
 				$view->headMeta()->appendName('description', $page->GetDescription() );
 			}
+			return $page->getContent();
 		}
-	catch (EmptyException $e){echo "";}
+	catch (EmptyException $e){
+		if (strtolower($options["err_mode"])=="empty"){return "";}
+		throw new EmptyException("Страница $sysname не найдена, возможно у нее установлен не верный статус.");
+	}
 }
 
 
