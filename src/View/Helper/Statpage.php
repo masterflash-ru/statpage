@@ -4,11 +4,11 @@
 Для вывода в скоипте вида используйте echo
 */
 
-namespace Statpage\View\Helper;
+namespace Mf\Statpage\View\Helper;
 
 use Zend\View\Helper\AbstractHelper;
-use Statpage\Service\Statpage as Statpage_service;
-use Statpage\Exception\EmptyException;
+use Mf\Statpage\Service\Statpage as Statpage_service;
+use Mf\Statpage\Exception\EmptyException;
 /**
  * помощник - вывода стат страниц
  */

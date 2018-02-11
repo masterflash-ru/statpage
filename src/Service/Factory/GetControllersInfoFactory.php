@@ -1,8 +1,7 @@
 <?php
-namespace Statpage\Service\Factory;
+namespace Mf\Statpage\Service\Factory;
 
 use Interop\Container\ContainerInterface;
-use Statpage\Service\GetControllersInfo;
 
 /*
 Фабрика 
@@ -22,7 +21,7 @@ public function __invoke(ContainerInterface $container, $requestedName, array $o
 		$connection=$container->get('ADO\Connection');
        $Router=$container->get("Application")->getMvcEvent()->getRouter();
 	   $config = $container->get('Config');
-        return new GetControllersInfo($connection,$Router,$config,$options);
+        return new $requestedName($connection,$Router,$config,$options);
     }
 }
 

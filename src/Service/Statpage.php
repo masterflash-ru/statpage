@@ -1,5 +1,5 @@
 <?php
-namespace Statpage\Service;
+namespace Mf\Statpage\Service;
 
 //для заполнения сущностей в стилистике ZF
 use Zend\Hydrator\Reflection as ReflectionHydrator;
@@ -7,8 +7,8 @@ use ADO\ResultSet\HydratingResultSet;
 use Locale;
 use ADO\Service\RecordSet;
 use ADO\Service\Command;
-use Statpage\Entity\Page;
-use Statpage\Exception;
+use Mf\Statpage\Entity\Page;
+use Mf\Statpage\Exception;
 
 class Statpage 
 {

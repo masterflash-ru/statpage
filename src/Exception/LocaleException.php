@@ -3,7 +3,7 @@
 ошибки с локалями
  */
 
-namespace Statpage\Exception;
+namespace Mf\Statpage\Exception;
 
 class LocaleException extends \Exception implements ExceptionInterface
 {

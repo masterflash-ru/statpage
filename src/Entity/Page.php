@@ -1,5 +1,5 @@
 <?php
-namespace Statpage\Entity;
+namespace Mf\Statpage\Entity;
 
 
 class Page

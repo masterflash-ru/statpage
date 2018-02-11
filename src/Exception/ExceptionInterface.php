@@ -3,7 +3,7 @@
 по аналогии с Zend
  */
 
-namespace Statpage\Exception;
+namespace Mf\Statpage\Exception;
 
 interface ExceptionInterface
 {

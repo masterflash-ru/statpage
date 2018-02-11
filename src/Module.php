@@ -3,13 +3,13 @@
 модуль обработки просто страниц системы Simba
  */
 
-namespace Statpage;
+namespace Mf\Statpage;
 
 use Zend\Mvc\MvcEvent;
 use Zend\Session\Container;
 use Zend\EventManager\Event;
 
-use Statpage\Service\GetControllersInfo;
+use Mf\Statpage\Service\GetControllersInfo;
 
 class Module
 {

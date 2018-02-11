@@ -1,9 +1,9 @@
 <?php
-namespace Statpage\View\Helper\Factory;
+namespace Mf\Statpage\View\Helper\Factory;
 
 use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\Factory\FactoryInterface;
-use Statpage\Service\Statpage as Statpage_service;
+use Mf\Statpage\Service\Statpage as Statpage_service;
 
 /**
  * универсальная фабрика для стат страниц

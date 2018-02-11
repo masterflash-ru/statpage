@@ -18,12 +18,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Statpage\\": "src/"
+            "Mf\\Statpage\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Statpage\\": "src/"
+            "Mf\\Statpage\\": "src/"
         }
     },
     "extra": {
@@ -32,8 +32,8 @@
             "dev-develop": "1.1-dev"
         },
         "zf": {
-            "component": "Statpage",
-            "config-provider": "masterflash-ru\\Statpage\\ConfigProvider"
+            "component": "Mf\\Statpage",
+            "config-provider": "masterflash-ru\\Mf\\Statpage\\ConfigProvider"
         }
     }
 }

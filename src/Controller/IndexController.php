@@ -4,12 +4,12 @@
 
  */
 
-namespace Statpage\Controller;
+namespace Mf\Statpage\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-use Statpage\Exception;
-use Statpage\Service\Statpage;
+use Mf\Statpage\Exception;
+use Mf\Statpage\Service\Statpage;
 
 class IndexController extends AbstractActionController
 {

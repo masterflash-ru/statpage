@@ -1,10 +1,9 @@
 <?php
-namespace Statpage\Controller\Factory;
+namespace Mf\Statpage\Controller\Factory;
 
 use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\Factory\FactoryInterface;
-use Statpage\Controller\IndexController;
-use Statpage\Service\Statpage;
+use Mf\Statpage\Service\Statpage;
 
 
 
@@ -17,7 +16,7 @@ class IndexControllerFactory implements FactoryInterface
         $connection=$container->get('ADO\Connection');
 		$statpage_service=$container->get(Statpage::class);
 		
-		return new IndexController( $connection,$statpage_service);
+		return new $requestedName( $connection,$statpage_service);
     }
 }
 

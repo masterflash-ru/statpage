@@ -1,5 +1,5 @@
 <?php
-namespace Statpage\Lib\Func;
+namespace Mf\Statpage\Lib\Func;
 
 
 class CreateUrl
@@ -11,7 +11,7 @@ public function __invoke ($obj,$infa,$struct0,$struct2,$tab_name,$const,$row_ite
 if (empty($infa)) 
 	{
 		$infa=$this->translit(trim($_POST['name'][$b]));//переводим
-		$infa=preg_replace('/[^0-9a-zA-Z_\- ]/iu', '',$infa);
+		$infa=preg_replace('/[^0-9a-zA-Z_\-]/iu', '',$infa);
 	}
 
 $infa=preg_replace('/-{2,}/','-',$infa);

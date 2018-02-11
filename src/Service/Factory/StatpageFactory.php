@@ -1,10 +1,8 @@
 <?php
-namespace Statpage\Service\Factory;
+namespace Mf\Statpage\Service\Factory;
 
 use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\Factory\FactoryInterface;
-use Statpage\Service\Statpage;
-
 
 /**
 фабрика
@@ -18,7 +16,7 @@ public function __invoke(ContainerInterface $container, $requestedName, array $o
 		 $cache = $container->get('DefaultSystemCache');
 		 $config = $container->get('Config');
         
-        return new Statpage($connection, $cache,$config);
+        return new $requestedName($connection, $cache,$config);
     }
 }
 

@@ -1,5 +1,5 @@
 <?php
-namespace Statpage\Service;
+namespace Mf\Statpage\Service;
 
 /*
 сервис обработки прерывания GetControllersInfoAdmin simba.admin

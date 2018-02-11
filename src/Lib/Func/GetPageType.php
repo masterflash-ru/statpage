@@ -1,5 +1,5 @@
 <?php
-namespace Statpage\Lib\Func;
+namespace Mf\Statpage\Lib\Func;
 
 class GetPageType
 {

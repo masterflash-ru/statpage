@@ -3,7 +3,7 @@
 работа с просто страницами
  */
 
-namespace Statpage;
+namespace Mf\Statpage;
 
 use Zend\Router\Http\Segment;
 

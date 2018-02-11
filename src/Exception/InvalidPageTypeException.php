@@ -3,7 +3,7 @@
 ошибки с с типами страниц
  */
 
-namespace Statpage\Exception;
+namespace Mf\Statpage\Exception;
 
 class InvalidPageType extends \Exception implements ExceptionInterface
 {
