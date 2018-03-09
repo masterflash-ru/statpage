@@ -49,6 +49,18 @@ return [
 				Service\GetControllersInfo::class => Service\Factory\GetControllersInfoFactory::class,
 			],
 		],
+    /*плагин контроллера для доступа к статичным страницам внутри контроллеров*/
+    'controller_plugins' => [
+        'aliases' => [
+            'Statpage' => Controller\Plugin\Statpage::class,
+            'Statpage' => Controller\Plugin\Statpage::class,
+            'Zend\Mvc\Controller\Plugin\Statpage' => Controller\Plugin\Statpage::class,
+        ],
+        'factories' => [
+            Controller\Plugin\Statpage::class => Controller\Plugin\StatpageFactory::class,
+
+        ],
+    ],
 
 /*
     'access_filter' => [
