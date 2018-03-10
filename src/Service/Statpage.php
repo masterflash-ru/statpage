@@ -12,6 +12,7 @@ use Mf\Statpage\Exception;
 
 class Statpage 
 {
+    /*константы не используются, но оставлены для совестимости*/
 	const PUBLIC=1;
 	const SPECIAL=2;
 	const NONPUBLIC=0;
@@ -21,14 +22,16 @@ class Statpage
 	protected $page_type;
 	protected $locale;
 	protected $config;
+    protected $pageStatusEnable=[];
     
     public function __construct($connection, $cache,$config) 
     {
         $this->connection = $connection;
         $this->cache = $cache;
 		$this->config=$config;
-		$this->page_type=Statpage::PUBLIC;
+		$this->page_type=(int)$config["statpage"]["defaultStatus"];
 		$this->locale=$config["locale_default"];
+        $this->pageStatusEnable=array_keys($config["statpage"]["status"]);
     }
     
 
@@ -97,7 +100,7 @@ protected function Load($url,$type="url")
   /*устновить тип считываемых страниц*/
 public function SetPageType($page_type)
 {
-	if (!in_array($page_type,[Statpage::NONPUBLIC,Statpage::SPECIAL,Statpage::PUBLIC])) {throw new Exception\InvalidPageTypeException("Не поддерживаемый тип страниц");}
+	if (!in_array($page_type,$this->pageStatusEnable)) {throw new Exception\InvalidPageTypeException("Не поддерживаемый тип страниц");}
 	$this->page_type=$page_type;
 }
 

@@ -15,62 +15,107 @@ use Mf\Statpage\Exception\EmptyException;
 class Statpage extends AbstractHelper 
 {
 	protected $statpage_service;
-
-/*
-собственно вызов помощника
-$sysname - системное имя в просто страницах,
-Опции:
-locale - строка локали, по умолчанию "ru_RU",
-page_type  - тип страницы, по умолчанию 2 (Statpage_service::SPECIAL), 
-flag_seo - заполнять СЕО-теги извлекаемой страницы, по умолчанию false (нет)
-err_mode - что делать при ошибке: empty - вернуть "" (по умолчанию), exception - исключение
-*/
-public function __invoke($sysname,array $options=null)
-{
-    if (isset($options["locale"])) {
-        $locale=$options["locale"];
-    }else {
-        $locale="ru_RU";
-    }
-   
-    if (isset($options["type"])) {
-        $type=(int)$options["type"];
-    }else {
-        $type=Statpage_service::SPECIAL;
-    }
-    
-    if (isset($options["seo"])) {
-        $flag_seo=(bool)$options["seo"];
-    }else {
-        $flag_seo=false;
-    }
-    if (!isset($options["err_mode"])){$options["err_mode"]="empty";}
-    
-	try
-		{
-			$this->statpage_service->SetLocale($locale);					//новая локаль
-			$this->statpage_service->SetPageType($type);			//публичные
-			$page=$this->statpage_service->LoadFromSysname($sysname);				//URL страницы (транслит имени)
-			
-			if ($flag_seo) {
-				$view=$this->getView();
-				$view->headTitle($page->GetTitle());
-				$view->headMeta()->appendName('keywords', $page->GetKeywords());
-				$view->headMeta()->appendName('description', $page->GetDescription() );
-			}
-			return $page->getContent();
-		}
-	catch (EmptyException $e){
-		if (strtolower($options["err_mode"])=="empty"){return "";}
-		throw new EmptyException("Страница $sysname не найдена, возможно у нее установлен не верный статус.");
-	}
-}
-
+	protected $options=[
+		"locale"=>"ru_RU",			//имя локали
+		"pageType"=>2,				//тип страниц для извлечения, 2 (Statpage_service::SPECIAL)
+		"errMode"=>"empty",			//тип обработки ошибок,empty - вернуть "" (по умолчанию), exception - исключение
+        "seo" => false,             //заполнять СЕО-теги извлекаемой страницы, по умолчанию false (нет)
+	];
 
 public function __construct ($statpage_service)
 	{
 		$this->statpage_service=$statpage_service;
 		
 	}
+
+/*
+собственно вызов помощника
+$sysname - системное имя в просто страницах, если null, тогда возвращает данный объект
+Опции:
+locale - строка локали, по умолчанию "ru_RU",
+pageType  - тип страницы, по умолчанию 2 (Statpage_service::SPECIAL), 
+seo - заполнять СЕО-теги извлекаемой страницы, по умолчанию false (нет)
+errMode - что делать при ошибке: empty - вернуть "" (по умолчанию), exception - исключение
+*/
+public function __invoke($sysname,array $options=null)
+{
+    if (empty($sysname)){return $this;}
+    
+    //костыль для совестимости
+    if (!empty($options["flag_seo"])){
+        $options["seo"]=$options["flag_seo"];
+        unset($options["flag_seo"]);
+    }
+
+    $this->setOptions();
+    $page=$this->getPage($sysname);
+    if (empty($page)) {
+        return "";
+    }
+    
+    if ($this->options["seo"]) {
+        $view=$this->getView();
+        $view->headTitle($page->GetTitle());
+        $view->headMeta()->appendName('keywords', $page->GetKeywords());
+        $view->headMeta()->appendName('description', $page->GetDescription() );
+    }
+    
+    return $page->getContent();
+    
+}
+
+
+    /**
+    * установить опции,
+    * пока принимаем только массив!
+    * если на входе пустой массив, тогда копируем опции по умолчанию
+    * результат - заполняет опциями $this->options
+    * возвращает $this для построения цепи запросов
+    */
+    public function setOptions(array $options=[])
+    {
+        $this->options=array_replace_recursive($this->options,$options);
+        return $this;
+    }
+    
+    /**
+    * установить одну опцию
+    * $name - имя опуии (ключ массива $this->options), $value - значение
+    * возвращает $this для построения цепи запросов
+    */
+    public function setOption($name,$value)
+    {
+        if (array_key_exists($name,$this->options)){
+            $this->options[$name]=$value;
+        }
+        return $this;
+    }
+
+    /**
+    * получить массив опций
+    */
+    public function getOptions()
+    {
+        return $this->options;
+    }
+
+    
+    /**
+    * собственно чтение страницы
+    * $sysname - системное имя страницы 
+    * возвращает Mf\Statpage\Entity\Page
+    * если не найдено, то зависит от настроек $this->options["errMode"] - вернет null либо исключение
+    */
+    public function getPage($sysname)
+    {
+        $this->statpage_service->setLocale($this->options["locale"]);
+        $this->statpage_service->setPageType((int)$this->options["pageType"]);
+        try {
+            return $this->statpage_service->LoadFromSysname($sysname);
+        } catch (EmptyException $e){
+            if (strtolower($this->options["errMode"])=="empty"){return null;}
+            throw new EmptyException("Страница $sysname не найдена, возможно у нее установлен не верный статус.");
+        }
+    }
 
 }
