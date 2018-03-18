@@ -15,6 +15,7 @@ class Page
 	protected $locale;
 	protected $tpl;
 	protected $content;
+    protected $lastmod;
     
     public function getId() 
     {
@@ -131,5 +132,14 @@ class Page
         $this->content = $content;
     }
 
+    public function setLastmod($lastmod)
+{
+	$this->lastmod=$lastmod;
+}
+
+public function getLastmod()
+{
+	return $this->lastmod;
+}
 
 }

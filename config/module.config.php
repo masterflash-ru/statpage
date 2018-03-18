@@ -47,6 +47,7 @@ return [
 			'factories' => [//сервисы-фабрики
 				Service\Statpage::class => Service\Factory\StatpageFactory::class,
 				Service\GetControllersInfo::class => Service\Factory\GetControllersInfoFactory::class,
+                Service\GetMap::class => Service\Factory\GetMapFactory::class,
 			],
 		],
     /*плагин контроллера для доступа к статичным страницам внутри контроллеров*/

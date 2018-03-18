@@ -95,6 +95,46 @@ protected function Load($url,$type="url")
     return $page;
 	}
   
+ /**
+ * получить список всех URL, дату модификации, для создания карты сайта
+ */
+ public function getMap()
+ {
+		$key="statpage_all_{$this->locale}";
+        //пытаемся считать из кеша
+        $result = false;
+        $items= $this->cache->getItem($key, $result);
+        if (!$result ){
+            $rs=new RecordSet();
+            $rs->CursorType = adOpenKeyset;
+            $rs->open("select * 
+							from statpage_text,statpage 
+								where 
+                                    page_type=".self::PUBLIC." and 
+                                    statpage.id=statpage_text.statpage and 
+                                    locale='{$this->locale}'",$this->connection);
+            $items=$rs->FetchEntityAll(Page::class);
+			//сохраним в кеш
+			$this->cache->setItem($key, $items);
+			$this->cache->setTags($key,["Stream"]);
+		}
+	return $items;
+ }
+
+/*
+* получить максимальную дату модификации
+**/
+public function getMaxLastMod()
+{
+    $rs=new RecordSet();
+    $rs->open("select max(lastmod) as lastmod, count(*) as recordcount from stream 
+								where 
+									locale='".$this->locale."' and 
+									url>'' and 
+									public =".self::PUBLIC,$this->connection);
+    $items=$rs->FetchEntity(Page::class);
+return $items;
+}
 
   
   /*устновить тип считываемых страниц*/
