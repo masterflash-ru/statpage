@@ -14,19 +14,18 @@ use Mf\Statpage\Exception\EmptyException;
  */
 class Statpage extends AbstractHelper 
 {
-	protected $statpage_service;
-	protected $options=[
-		"locale"=>"ru_RU",			//имя локали
-		"pageType"=>2,				//тип страниц для извлечения, 2 (Statpage_service::SPECIAL)
-		"errMode"=>"empty",			//тип обработки ошибок,empty - вернуть "" (по умолчанию), exception - исключение
-        "seo" => false,             //заполнять СЕО-теги извлекаемой страницы, по умолчанию false (нет)
-	];
+  protected $statpage_service;
+  protected $options=[
+    "locale"=>"ru_RU",			//имя локали
+    "pageType"=>2,				//тип страниц для извлечения, 2 (Statpage_service::SPECIAL)
+    "errMode"=>"empty",			//тип обработки ошибок,empty - вернуть "" (по умолчанию), exception - исключение
+    "seo" => false,             //заполнять СЕО-теги извлекаемой страницы, по умолчанию false (нет)
+  ];
 
 public function __construct ($statpage_service)
-	{
-		$this->statpage_service=$statpage_service;
-		
-	}
+{
+  $this->statpage_service=$statpage_service;
+}
 
 /*
 собственно вызов помощника
@@ -47,7 +46,7 @@ public function __invoke($sysname = null,array $options=null)
         unset($options["flag_seo"]);
     }
 
-    $this->setOptions();
+    $this->setOptions($options);
     $page=$this->getPage($sysname);
     if (empty($page)) {
         return "";
