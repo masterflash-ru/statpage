@@ -42,9 +42,9 @@ errMode - что делать при ошибке: empty - вернуть "" (п
 public function __invoke($sysname = null,array $options=null)
 {
     if (empty($sysname)){return $this;}
-    $this->setOptions();
+    $this->setOptions($options);
     $page=$this->getPage($sysname);
-    
+
     if (empty($page)) {
         return "";
     }
