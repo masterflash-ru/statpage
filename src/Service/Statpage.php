@@ -104,7 +104,7 @@ protected function Load($url,$type="url")
         //пытаемся считать из кеша
         $result = false;
         $items= $this->cache->getItem($key, $result);
-        if (!$result ){
+        if (!$result){
             $rs=new RecordSet();
             $rs->CursorType = adOpenKeyset;
             $rs->open("select * 
@@ -116,7 +116,7 @@ protected function Load($url,$type="url")
             $items=$rs->FetchEntityAll(Page::class);
 			//сохраним в кеш
 			$this->cache->setItem($key, $items);
-			$this->cache->setTags($key,["Stream"]);
+			$this->cache->setTags($key,["statpage"]);
 		}
 	return $items;
  }
@@ -127,11 +127,12 @@ protected function Load($url,$type="url")
 public function getMaxLastMod()
 {
     $rs=new RecordSet();
-    $rs->open("select max(lastmod) as lastmod, count(*) as recordcount from stream 
+    $rs->open("select max(lastmod) as lastmod, count(*) as recordcount from statpage_text,statpage
 								where 
 									locale='".$this->locale."' and 
+                                    statpage.id=statpage_text.statpage and
 									url>'' and 
-									public =".self::PUBLIC,$this->connection);
+									page_type =".self::PUBLIC,$this->connection);
     $items=$rs->FetchEntity(Page::class);
 return $items;
 }
