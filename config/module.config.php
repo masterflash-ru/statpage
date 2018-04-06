@@ -59,20 +59,9 @@ return [
         ],
         'factories' => [
             Controller\Plugin\Statpage::class => Controller\Plugin\StatpageFactory::class,
-
         ],
     ],
 
-/*
-    'access_filter' => [
-        'controllers' => [
-            Controller\IndexController::class => [
-                //разрешение для входа
-                ['actions' => '*', 'allow' => '*'],
-            ],
-        ]
-    ],
-*/
 
     'view_helpers' => [
         'factories' => [
@@ -81,7 +70,7 @@ return [
         'aliases' => [
             'Statpage' => View\Helper\Statpage::class,
 			'statpage' => View\Helper\Statpage::class,
-			
+			'StatPage' => View\Helper\Statpage::class,
         ],
     ],
 

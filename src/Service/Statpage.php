@@ -81,9 +81,9 @@ protected function Load($url,$type="url")
 							from statpage_text,statpage 
 								where page_type={$this->page_type} and statpage.id=statpage_text.statpage and $type=:url and locale='{$this->locale}'";
 			$rs=new RecordSet();
-			//$rs->CursorType =adOpenKeyset;
+			
 			$rs->Open($c);
-	if ($rs->EOF) {throw new  Exception\EmptyException("Запись в STATPAGE не найдена");}
+            if ($rs->EOF) {throw new  Exception\EmptyException("Запись в STATPAGE не найдена");}
 			$resultSet = new HydratingResultSet(new ReflectionHydrator, new Page);
 			$resultSet->initialize($rs);
 		   
@@ -100,14 +100,14 @@ protected function Load($url,$type="url")
  */
  public function getMap()
  {
-		$key="statpage_all_{$this->locale}";
+		$key="statpage_sitemap_all_{$this->locale}";
         //пытаемся считать из кеша
         $result = false;
         $items= $this->cache->getItem($key, $result);
         if (!$result){
             $rs=new RecordSet();
             $rs->CursorType = adOpenKeyset;
-            $rs->open("select * 
+            $rs->open("select lastmod,url 
 							from statpage_text,statpage 
 								where 
                                     page_type=".self::PUBLIC." and 
@@ -122,7 +122,8 @@ protected function Load($url,$type="url")
  }
 
 /*
-* получить максимальную дату модификации
+* получить максимальную дату модификации и кол-во элементов
+* которые публикуются через этот модуль (имеют статус 2)
 **/
 public function getMaxLastMod()
 {
