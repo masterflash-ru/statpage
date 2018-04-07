@@ -39,7 +39,7 @@ locale - строка локали, по умолчанию "ru_RU",
 pageType  - тип страницы, по умолчанию 2 (Statpage_service::SPECIAL), 
 errMode - что делать при ошибке: empty - вернуть "" (по умолчанию), exception - исключение
 */
-public function __invoke($sysname = null,array $options=null)
+public function __invoke($sysname = null,array $options=[])
 {
     if (empty($sysname)){return $this;}
     $this->setOptions($options);

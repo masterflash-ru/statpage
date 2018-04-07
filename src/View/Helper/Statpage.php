@@ -36,7 +36,7 @@ pageType  - тип страницы, по умолчанию 2 (Statpage_service
 seo - заполнять СЕО-теги извлекаемой страницы, по умолчанию false (нет)
 errMode - что делать при ошибке: empty - вернуть "" (по умолчанию), exception - исключение
 */
-public function __invoke($sysname = null,array $options=null)
+public function __invoke($sysname = null,array $options=[])
 {
     if (empty($sysname)){return $this;}
     
