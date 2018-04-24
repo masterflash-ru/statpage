@@ -107,7 +107,7 @@ protected function Load($url,$type="url")
         if (!$result){
             $rs=new RecordSet();
             $rs->CursorType = adOpenKeyset;
-            $rs->open("select lastmod,url, lastmod
+            $rs->open("select lastmod,url 
 							from statpage_text,statpage 
 								where 
                                     page_type=".self::PUBLIC." and 

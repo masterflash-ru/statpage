@@ -92,7 +92,7 @@ CREATE TABLE `statpage_text` (
   `tpl` char(127) DEFAULT NULL COMMENT 'имя шаблона-контейнера',
   `page_type` int(11) DEFAULT NULL COMMENT 'типа страницы: 1-публиковать на сайте, 0-нет, 2-внутренняя',
   `content` text COMMENT 'контент страницы',
-  `lastmod` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `lastmod` timestamp NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`statpage`,`locale`),
    CONSTRAINT `statpage_text_fk` FOREIGN KEY (`statpage`) REFERENCES `statpage` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
