@@ -27,7 +27,6 @@ public function indexAction()
 {
 	$url=$this->params('page',"404");
 	$locale=$this->params('locale',$this->statpage_service->GetDefaultLocale());
-	
 	try
 	{
 		
@@ -35,7 +34,7 @@ public function indexAction()
 		$this->statpage_service->SetPageType(Statpage::PUBLIC);			//публичные
 		$page=$this->statpage_service->LoadFromUrl($url);				//URL страницы (транслит имени)
 		
-		$view=new ViewModel(["page"=>$page]);
+		$view=new ViewModel(["page"=>$page,"locale"=>$locale]);
 		if  ($page->getTpl()) {$view->setTemplate($page->getTpl()) ;}
 		return $view;
 	}
