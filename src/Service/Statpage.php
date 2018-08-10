@@ -111,13 +111,20 @@ protected function Load($url,$type="url")
         if (!$result){
             $rs=new RecordSet();
             $rs->CursorType = adOpenKeyset;
-            $rs->open("select lastmod,url 
+            $rs->open("select lastmod,url,seo_options
 							from statpage_text,statpage 
 								where 
                                     page_type=1 and 
                                     statpage.id=statpage_text.statpage and 
                                     locale='{$this->locale}'",$this->connection);
             $items=$rs->FetchEntityAll(Page::class);
+            //пробежим и удалим если есть опции noindex или canonical
+            foreach ($items as $k=>$v){
+                $seo=unserialize($v->getSeo_options());
+                if (!empty($seo["robots"]) || !empty($seo["canonical"])){
+                    unset($items[$k]);
+                }
+            }            
 			//сохраним в кеш
 			$this->cache->setItem($key, $items);
 			$this->cache->setTags($key,["statpage"]);
