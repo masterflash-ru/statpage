@@ -4,7 +4,7 @@ namespace Mf\Statpage\Entity;
 
 class Page
 {
- protected $statpage = null;
+    protected $statpage = null;
 
     protected $locale = null;
 
@@ -23,6 +23,8 @@ class Page
     protected $lastmod = null;
 
     protected $seo_options = null;
+
+    protected $layout = null;
 
     protected $id = null;
 
@@ -130,6 +132,16 @@ class Page
     public function getSeo_options()
     {
         return $this->seo_options;
+    }
+
+    public function setLayout($layout)
+    {
+        $this->layout=$layout;
+    }
+
+    public function getLayout()
+    {
+        return $this->layout;
     }
 
     public function setId($id)

@@ -39,6 +39,7 @@ public function indexAction()
         ]);
 
 		if  ($page->getTpl()) {$view->setTemplate($page->getTpl()) ;}
+        if  ($page->getLayout()) {$this->layout($page->getLayout()); ;}
 		return $view;
 	}
 	catch (Exception $e) {

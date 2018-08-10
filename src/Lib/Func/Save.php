@@ -40,7 +40,7 @@ if ($action==-2)
 				$rst->Fields->Item['title']->Value=$tab_rec['title'];
 				$rst->Fields->Item['seo_options']->Value=$tab_rec['seo_options'];
 				$rst->Fields->Item['description']->Value=$tab_rec['description'];
-				
+				$rst->Fields->Item['layout']->Value=$tab_rec['layout'];
 				$rst->Fields->Item['locale']->Value=$obj->pole_dop[0];
 				
 				$rs->Update();
@@ -68,6 +68,7 @@ if ($action==-2)
 				$rst->Fields->Item['page_type']->Value=$tab_rec['page_type'];
 				$rst->Fields->Item['tpl']->Value=$tab_rec['tpl'];
                 $rst->Fields->Item['seo_options']->Value=$tab_rec['seo_options'];
+                $rst->Fields->Item['layout']->Value=$tab_rec['layout'];
 				
 				$rst->Fields->Item['title']->Value=$tab_rec['title'];
 				$rst->Fields->Item['description']->Value=$tab_rec['description'];
