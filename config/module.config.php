@@ -23,8 +23,8 @@ return [
                 'options' => [
                     'route'    => '/page/:page',
 					'constraints' => [
-                               			 'page' => '[a-zA-Z0-9_-]+',
-                           			 ],
+                        'page' => '[a-zA-Z0-9_-]+',
+                    ],
                     'defaults' => [
                         'controller' => Controller\IndexController::class,
                         'action'     => 'index',
@@ -37,7 +37,6 @@ return [
 	//контроллеры
     'controllers' => [
         'factories' => [
-		
 			//если мы используем нашу фабрику вызова, класс должен включать интерфейс FactoryInterface
 			Controller\IndexController::class => Controller\Factory\IndexControllerFactory::class,	
         ],
@@ -77,11 +76,13 @@ return [
     'view_manager' => [
         'template_path_stack' => [
             __DIR__ . '/../view',
-			__DIR__ . '/../../../../data/statpage/tpl',	//папка для поиска дополнительных шаблонов
         ],
     ],
 	"statpage"=>[
-		'tpl_folder'=>"data/statpage/tpl",        //шаблоны вывода контента
+        'tpl_folder'=>"",                         //устарел и не используется
+		'tpl'=>[                                  //пользовательские шаблоны вывода контента
+            "application/statpage/1"=>"Шаблон 1",
+        ],        
 		'media_folder'=>"media",                  //имя папки в public для размещения медиаматериала
 		'status'=>[
 			0=>"Не опубликовано",
@@ -89,5 +90,12 @@ return [
 			2=>"Для внутренних целей",
 		],
         "defaultStatus"=>1,                     //код статуса по умолчанию (опубликовано)
-	]
+	],
+    
+    "locale_default"=>"ru_RU",
+    "locale_enable_list"=>["ru_RU"],
+    /*Канонический адрес сайта*/
+    "ServerDefaultUri"=>"http://".trim($_SERVER["SERVER_NAME"],"w."),
+
+
 ];

@@ -8,7 +8,7 @@ namespace Mf\Statpage\View\Helper;
 
 use Zend\View\Helper\AbstractHelper;
 use Mf\Statpage\Service\Statpage as Statpage_service;
-use Mf\Statpage\Exception\EmptyException;
+use Exception;
 /**
  * помощник - вывода стат страниц
  */
@@ -111,9 +111,9 @@ public function __invoke($sysname = null,array $options=[])
         $this->statpage_service->setPageType((int)$this->options["pageType"]);
         try {
             return $this->statpage_service->LoadFromSysname($sysname);
-        } catch (EmptyException $e){
+        } catch (Exception $e){
             if (strtolower($this->options["errMode"])=="empty"){return null;}
-            throw new EmptyException("Страница $sysname не найдена, возможно у нее установлен не верный статус.");
+            throw new Exception("Страница $sysname не найдена, возможно у нее установлен не верный статус.");
         }
     }
 

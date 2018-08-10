@@ -2,5 +2,14 @@
 $this->headTitle($this->page->GetTitle());
 $this->headMeta()->appendName('keywords', $this->page->GetKeywords());
 $this->headMeta()->appendName('description', $this->page->GetDescription() );
+
+$seo=unserialize($this->page->getSeo_options());
+if (!empty($seo["robots"])){
+    $this->headMeta()->appendName('robots', $seo["robots"] );
+}
+if (!empty($seo["canonical"])){
+    $this->headLink(['rel' => 'canonical', 'href' =>rtrim($this->ServerDefaultUri,"/")."/". $seo["canonical"]]);
+}
+
 echo $this->page->GetContent();
 $this->layout()->locale=$this->locale;

@@ -8,7 +8,7 @@ namespace Mf\Statpage\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-use Mf\Statpage\Exception;
+use Exception;
 use Mf\Statpage\Service\Statpage;
 
 class IndexController extends AbstractActionController
@@ -27,22 +27,24 @@ public function indexAction()
 {
 	$url=$this->params('page',"404");
 	$locale=$this->params('locale',$this->statpage_service->GetDefaultLocale());
-	try
-	{
-		
-		$this->statpage_service->SetLocale($locale);					//новая локаль
-		$this->statpage_service->SetPageType(Statpage::PUBLIC);			//публичные
+	try{
+        $this->statpage_service->SetLocale($locale);					//новая локаль
+		$this->statpage_service->SetPageType(1);			           //публичные
 		$page=$this->statpage_service->LoadFromUrl($url);				//URL страницы (транслит имени)
 		
-		$view=new ViewModel(["page"=>$page,"locale"=>$locale]);
+		$view=new ViewModel([
+            "page"=>$page,
+            "locale"=>$locale,
+            "ServerDefaultUri"=>$this->statpage_service->getServerDefaultUri()
+        ]);
+
 		if  ($page->getTpl()) {$view->setTemplate($page->getTpl()) ;}
 		return $view;
 	}
-	catch (\Exception $e) 
-		{
-			//любое исключение - 404
-			$this->getResponse()->setStatusCode(404);
-		}
+	catch (Exception $e) {
+        //любое исключение - 404
+        $this->getResponse()->setStatusCode(404);
+    }
 	
   
 }

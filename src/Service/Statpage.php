@@ -8,7 +8,7 @@ use Locale;
 use ADO\Service\RecordSet;
 use ADO\Service\Command;
 use Mf\Statpage\Entity\Page;
-use Mf\Statpage\Exception;
+use Exception;
 
 class Statpage 
 {
@@ -23,6 +23,7 @@ class Statpage
 	protected $locale;
 	protected $config;
     protected $pageStatusEnable=[];
+    protected $ServerDefaultUri;
     
     public function __construct($connection, $cache,$config) 
     {
@@ -31,6 +32,7 @@ class Statpage
 		$this->config=$config;
 		$this->page_type=(int)$config["statpage"]["defaultStatus"];
 		$this->locale=$config["locale_default"];
+        $this->ServerDefaultUri=$config["ServerDefaultUri"];
         $this->pageStatusEnable=array_keys($config["statpage"]["status"]);
     }
     
@@ -69,21 +71,23 @@ protected function Load($url,$type="url")
         //пытаемся считать из кеша
         $result = false;
         $page= $this->cache->getItem($key, $result);
-        if (!$result || true)
-        {
+        if (!$result){
             //промах кеша, создаем
 			$c=new Command();
 			$c->NamedParameters=true;
 			$c->ActiveConnection=$this->connection;
-			$p=$c->CreateParameter('url', adChar, adParamInput, 50, $url);//генерируем объек параметров
+			$p=$c->CreateParameter('url', adChar, adParamInput, 127, $url);//генерируем объек параметров
 			$c->Parameters->Append($p);//добавим в коллекцию
 			$c->CommandText="select * 
 							from statpage_text,statpage 
-								where page_type={$this->page_type} and statpage.id=statpage_text.statpage and $type=:url and locale='{$this->locale}'";
+								where page_type={$this->page_type} and 
+                                    statpage.id=statpage_text.statpage and 
+                                    $type=:url and 
+                                    locale='{$this->locale}'";
 			$rs=new RecordSet();
 			
 			$rs->Open($c);
-            if ($rs->EOF) {throw new  Exception\EmptyException("Запись в STATPAGE не найдена");}
+            if ($rs->EOF) {throw new  Exception("Запись в STATPAGE не найдена");}
 			$resultSet = new HydratingResultSet(new ReflectionHydrator, new Page);
 			$resultSet->initialize($rs);
 		   
@@ -110,7 +114,7 @@ protected function Load($url,$type="url")
             $rs->open("select lastmod,url 
 							from statpage_text,statpage 
 								where 
-                                    page_type=".self::PUBLIC." and 
+                                    page_type=1 and 
                                     statpage.id=statpage_text.statpage and 
                                     locale='{$this->locale}'",$this->connection);
             $items=$rs->FetchEntityAll(Page::class);
@@ -133,7 +137,7 @@ public function getMaxLastMod()
 									locale='".$this->locale."' and 
                                     statpage.id=statpage_text.statpage and
 									url>'' and 
-									page_type =".self::PUBLIC,$this->connection);
+									page_type =1",$this->connection);
     $items=$rs->FetchEntity(Page::class);
 return $items;
 }
@@ -142,7 +146,7 @@ return $items;
   /*устновить тип считываемых страниц*/
 public function SetPageType($page_type)
 {
-	if (!in_array($page_type,$this->pageStatusEnable)) {throw new Exception\InvalidPageTypeException("Не поддерживаемый тип страниц");}
+	if (!in_array($page_type,$this->pageStatusEnable)) {throw new Exception ("Не поддерживаемый тип страниц");}
 	$this->page_type=$page_type;
 }
 
@@ -155,15 +159,13 @@ public function GetPageType()
 //установка локали
 public function SetLocale($locale=NULL)
 {
-	if (!empty($locale)) 
-		{
-			//проверим на допустимость имени локали
-			if (!in_array($locale,$this->config["locale_enable_list"])) 
-				{
-					throw new \Exception("Попытка установить не допустимую локаль");
-				}
-			$this->locale=$locale;
-		}
+	if (!empty($locale)) {
+        //проверим на допустимость имени локали
+        if (!in_array($locale,$this->config["locale_enable_list"])) {
+            throw new Exception("Попытка установить не допустимую локаль");
+        }
+        $this->locale=$locale;
+    }
 }
 
 //получить локали
@@ -177,7 +179,11 @@ public function GetDefaultLocale()
 	return $this->config["locale_default"];
 }
 
-
+/*получить канонический адрес сайта*/
+public function getServerDefaultUri()
+{
+    return $this->ServerDefaultUri;
+}
 
 }
 
