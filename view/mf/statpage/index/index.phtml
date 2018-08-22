@@ -5,11 +5,14 @@ $this->headMeta()->appendName('description', $this->page->GetDescription() );
 
 $seo=unserialize($this->page->getSeo_options());
 if (!empty($seo["robots"])){
+    //запретить индексирование
     $this->headMeta()->appendName('robots', $seo["robots"] );
 }
 if (!empty($seo["canonical"])){
+    //указать канонический адрес страницы
     $this->headLink(['rel' => 'canonical', 'href' =>rtrim($this->ServerDefaultUri,"/")."/". $seo["canonical"]]);
 }
 
 echo $this->page->GetContent();
+//передать в макет имя локали, для мультиязычных сайтов
 $this->layout()->locale=$this->locale;
