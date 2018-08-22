@@ -52,7 +52,8 @@ return [
     'controller_plugins' => [
         'aliases' => [
             'Statpage' => Controller\Plugin\Statpage::class,
-            'Statpage' => Controller\Plugin\Statpage::class,
+            'StatPage' => Controller\Plugin\Statpage::class,
+            'statpage' => Controller\Plugin\Statpage::class,
             'Zend\Mvc\Controller\Plugin\Statpage' => Controller\Plugin\Statpage::class,
         ],
         'factories' => [

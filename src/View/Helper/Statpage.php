@@ -9,6 +9,7 @@ namespace Mf\Statpage\View\Helper;
 use Zend\View\Helper\AbstractHelper;
 use Mf\Statpage\Service\Statpage as Statpage_service;
 use Exception;
+use Zend\Stdlib\ArrayUtils;
 /**
  * помощник - вывода стат страниц
  */
@@ -73,7 +74,7 @@ public function __invoke($sysname = null,array $options=[])
     */
     public function setOptions(array $options=[])
     {
-        $this->options=array_replace_recursive($this->options,$options);
+        $this->options=ArrayUtils::merge($this->options,$options);
         return $this;
     }
     

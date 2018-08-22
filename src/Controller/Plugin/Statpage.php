@@ -9,6 +9,7 @@ namespace Mf\Statpage\Controller\Plugin;
 use Zend\Mvc\Controller\Plugin\AbstractPlugin;
 use Mf\Statpage\Service\Statpage as Statpage_service;
 use Exception;
+use Zend\Stdlib\ArrayUtils;
 
 /**
  * 
@@ -60,7 +61,7 @@ public function __invoke($sysname = null,array $options=[])
     */
     public function setOptions(array $options=[])
     {
-        $this->options=array_replace_recursive($this->options,$options);
+        $this->options=ArrayUtils::merge($this->options,$options);
         return $this;
     }
 
