@@ -19,14 +19,13 @@ class Statpage extends AbstractPlugin
     * экземпляр Mf\Statpage\Service\Statpage
     */
     protected $statpage_service;
-	protected $options=[
-		"locale"=>"ru_RU",			//имя локали
-		"pageType"=>2,				//тип страниц для извлечения, 2 (Statpage_service::SPECIAL)
-		"errMode"=>"empty",			//тип обработки ошибок,empty - вернуть "" (по умолчанию), exception - исключение
-	];
+    protected $options=[
+      "locale"=>"ru_RU",            //имя локали
+      "pageType"=>2,                //тип страниц для извлечения, 2 (Statpage_service::SPECIAL)
+      "errMode"=>"empty",           //тип обработки ошибок,empty - вернуть "" (по умолчанию), exception - исключение
+    ];
 
-    
-    
+
 public function __construct($statpage_service) 
 {
     $this->statpage_service = $statpage_service;
@@ -44,7 +43,7 @@ public function __invoke($sysname = null,array $options=[])
     if (empty($sysname)){return $this;}
     $this->setOptions($options);
     $page=$this->getPage($sysname);
-    
+
     if (empty($page)) {
         return "";
     }

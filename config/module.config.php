@@ -13,42 +13,41 @@ use Zend\Router\Http\Segment;
 */
 
 return [
-	//маршруты
+    //маршруты
     'router' => [
         'routes' => [
-			
-			//маршрут для варианта с одним языком
+            //маршрут для варианта с одним языком
             'page_ru_RU' => [
                 'type' => Segment::class,
                 'options' => [
                     'route'    => '/page/:page',
-					'constraints' => [
+                    'constraints' => [
                         'page' => '[a-zA-Z0-9_-]+',
                     ],
                     'defaults' => [
                         'controller' => Controller\IndexController::class,
                         'action'     => 'index',
-						'locale'	=> 'ru_RU'
+                        'locale'	=> 'ru_RU'
                     ],
                 ],
-			],
-	    ],
+            ],
+        ],
     ],
-	//контроллеры
+    //контроллеры
     'controllers' => [
         'factories' => [
-			//если мы используем нашу фабрику вызова, класс должен включать интерфейс FactoryInterface
-			Controller\IndexController::class => Controller\Factory\IndexControllerFactory::class,	
+            //если мы используем нашу фабрику вызова, класс должен включать интерфейс FactoryInterface
+            Controller\IndexController::class => Controller\Factory\IndexControllerFactory::class,
         ],
-	],
+    ],
 
-	'service_manager' => [
-			'factories' => [//сервисы-фабрики
-				Service\Statpage::class => Service\Factory\StatpageFactory::class,
-				Service\GetControllersInfo::class => Service\Factory\GetControllersInfoFactory::class,
-                Service\GetMap::class => Service\Factory\GetMapFactory::class,
-			],
-		],
+    'service_manager' => [
+        'factories' => [//сервисы-фабрики
+            Service\Statpage::class => Service\Factory\StatpageFactory::class,
+            Service\GetControllersInfo::class => Service\Factory\GetControllersInfoFactory::class,
+            Service\GetMap::class => Service\Factory\GetMapFactory::class,
+        ],
+    ],
     /*плагин контроллера для доступа к статичным страницам внутри контроллеров*/
     'controller_plugins' => [
         'aliases' => [
@@ -68,8 +67,8 @@ return [
         ],
         'aliases' => [
             'Statpage' => View\Helper\Statpage::class,
-			'statpage' => View\Helper\Statpage::class,
-			'StatPage' => View\Helper\Statpage::class,
+            'statpage' => View\Helper\Statpage::class,
+            'StatPage' => View\Helper\Statpage::class,
         ],
     ],
 
@@ -78,20 +77,20 @@ return [
             __DIR__ . '/../view',
         ],
     ],
-	"statpage"=>[
-		'tpl'=>[                                  //пользовательские шаблоны вывода контента
+    "statpage"=>[
+        'tpl'=>[                                  //пользовательские шаблоны вывода контента
         ],
         'layout'=>[                               //имена макетов которые имеются в приложении
         ],
-		'media_folder'=>"media",                  //имя папки в public для размещения медиаматериала стат.страниц
-		'status'=>[
-			0=>"Не опубликовано",
-			1=>"Опубликовано",
-			2=>"Для внутренних целей",
-		],
+        'media_folder'=>"media",                  //имя папки в public для размещения медиаматериала стат.страниц
+        'status'=>[
+            0=>"Не опубликовано",
+            1=>"Опубликовано",
+            2=>"Для внутренних целей",
+        ],
         "defaultStatus"=>1,                     //код статуса по умолчанию (опубликовано)
-	],
-    
+    ],
+
     "locale_default"=>"ru_RU",
     "locale_enable_list"=>["ru_RU"],
     /*Канонический адрес сайта*/

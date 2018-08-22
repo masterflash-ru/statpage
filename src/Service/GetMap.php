@@ -9,34 +9,34 @@ use Exception;
 
 class GetMap 
 {
-	protected $Router;
-	protected $type="sitemapindex";
+    protected $Router;
+    protected $type="sitemapindex";
     protected $locale="ru_RU";
     protected $name;
     protected $statpageService;
 
-	
-    public function __construct($Router, array $options,$statpageService) 
-    {
-        $this->statpageService=$statpageService;
-		$this->Router=$Router;
-		if(isset($options["type"])){
-            $this->type=$options["type"];
-        }
-		if(isset($options["locale"])){
-            $this->locale=$options["locale"];
-        }
-		if(isset($options["name"])){
-            $this->name=$options["name"];
-        }
+
+public function __construct($Router, array $options,$statpageService) 
+{
+    $this->statpageService=$statpageService;
+    $this->Router=$Router;
+    if(isset($options["type"])){
+          $this->type=$options["type"];
     }
-    
-    
-	/**
+    if(isset($options["locale"])){
+        $this->locale=$options["locale"];
+    }
+    if(isset($options["name"])){
+          $this->name=$options["name"];
+    }
+}
+
+
+/**
     * сам обработчик
     */
-	public function GetMap()
-	{
+public function GetMap()
+{
         if ($this->type=="sitemapindex"){
             /*получить информацию для генерации sitemapindex*/
             $maxLastMod=$this->statpageService->getMaxLastMod();
@@ -60,6 +60,6 @@ class GetMap
             return $rez;
         }
         throw new  Exception("Недопустимый тип sitemap");
-	}
-	
+}
+
 }
