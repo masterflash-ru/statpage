@@ -16,3 +16,13 @@ if (!empty($seo["canonical"])){
 echo $this->page->GetContent();
 //передать в макет имя локали, для мультиязычных сайтов
 $this->layout()->locale=$this->locale;
+
+if ($this->getHelperPluginManager()->has("SearchIndex")){
+    //поисковый индекс, если есть поисковый плагин-индексатор
+    $this->SearchIndex(
+        $this->page->GetContent(),
+        $this->page->GetTitle(),
+        $this->url("page_".$this->locale,["page"=>$this->page->getUrl()]),
+        ["material_type"=>"","date_public"=>""]
+    );
+}
