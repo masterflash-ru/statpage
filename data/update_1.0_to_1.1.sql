@@ -35,7 +35,7 @@ INSERT INTO `design_tables_text_interfase` (`language`, `table_type`, `interface
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 ALTER TABLE `statpage_text` 
- ADD `seo_options` char(255) DEFAULT NULL COMMENT 'опции для сео',
+ ADD `seo_options` varchar(2000) DEFAULT NULL COMMENT 'опции для сео',
  ADD `layout` char(127) DEFAULT NULL COMMENT 'макет вывода'
 ;
  /*!40101 SET character_set_client = @saved_cs_client */;

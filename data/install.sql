@@ -101,7 +101,7 @@ CREATE TABLE `statpage_text` (
   `page_type` int(11) DEFAULT NULL COMMENT 'типа страницы: 1-публиковать на сайте, 0-нет, 2-внутренняя',
   `content` text COMMENT 'контент страницы',
   `lastmod` datetime DEFAULT NULL COMMENT 'для sitemap',
-  `seo_options` char(255) DEFAULT NULL COMMENT 'опции для сео',
+  `seo_options` varchar(2000) DEFAULT NULL COMMENT 'опции для сео',
   `layout` char(127) DEFAULT NULL COMMENT 'макет вывода',
   PRIMARY KEY (`statpage`,`locale`),
    CONSTRAINT `statpage_text_fk` FOREIGN KEY (`statpage`) REFERENCES `statpage` (`id`) ON DELETE CASCADE
