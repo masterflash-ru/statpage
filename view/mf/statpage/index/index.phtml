@@ -3,14 +3,14 @@ $this->headTitle($this->page->GetTitle());
 $this->headMeta()->appendName('keywords', $this->page->GetKeywords());
 $this->headMeta()->appendName('description', $this->page->GetDescription() );
 
-$seo=unserialize($this->page->getSeo_options());
-if (!empty($seo["robots"])){
+$seo=$this->page->getSeo_options();
+if (!empty($seo->getRobots())){
     //запретить индексирование
-    $this->headMeta()->appendName('robots', $seo["robots"] );
+    $this->headMeta()->appendName('robots', $seo->getRobots() );
 }
-if (!empty($seo["canonical"])){
+if (!empty($seo->getCanonical())){
     //указать канонический адрес страницы
-    $this->headLink(['rel' => 'canonical', 'href' =>rtrim($this->ServerDefaultUri,"/")."/". $seo["canonical"]]);
+    $this->headLink(['rel' => 'canonical', 'href' =>rtrim($this->ServerDefaultUri,"/")."/". $seo->getCanonical()]);
 }
 
 echo $this->page->GetContent();

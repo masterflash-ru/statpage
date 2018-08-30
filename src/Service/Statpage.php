@@ -8,6 +8,7 @@ use Locale;
 use ADO\Service\RecordSet;
 use ADO\Service\Command;
 use Mf\Statpage\Entity\Page;
+use Mf\Statpage\Entity\SeoOptions;
 use Exception;
 
 class Statpage 
@@ -92,6 +93,14 @@ protected function Load($url,$type="url")
     $resultSet->initialize($rs);
 
     $page=$resultSet->current();
+      
+    //опции перезапишем в виде объекта
+    $s=unserialize($page->getSeo_options());
+    $seoOptions=new SeoOptions();
+    $seoOptions->setRobots($s["robots"]);
+    $seoOptions->setCanonical($s["canonical"]);
+    $page->setSeo_options($seoOptions);
+      
     //сохраним в кеш
     $this->cache->setItem($key, $page);
     $this->cache->setTags($key,["statpage"]);
