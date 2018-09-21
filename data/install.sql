@@ -15,20 +15,22 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+delete from design_tables where table_name='statpage';
+delete from design_tables where table_name='statpage_text';
 INSERT INTO `design_tables` (`interface_name`, `table_name`, `table_type`, `col_name`, `caption_style`, `row_type`, `col_por`, `pole_spisok_sql`, `pole_global_const`, `pole_prop`, `pole_type`, `pole_style`, `pole_name`, `default_sql`, `functions_befo`, `functions_after`, `functions_befo_out`, `functions_befo_del`, `properties`, `value`, `validator`, `sort_item_flag`, `col_function_array`) VALUES 
   ('statpage', 'statpage', 0, 'sysname', '', 3, 0, '', '', 'size=80', '2', '', 'sysname', '', '', '', '', '', 'N;', '', 'N;', 0, 'N;'),
-  ('statpage', 'statpage', 0, 'tpl', '', 2, 5, '', NULL, '', '4', NULL, 'tpl', NULL, '', '', '\\Mf\\Statpage\\Lib\\Func\\GetTplList', '', 'a:3:{i:0;s:1:\"0\";i:1;s:1:\"1\";i:2;s:1:\"0\";}', '', 'N;', NULL, 'N;'),
+  ('statpage', 'statpage', 0, 'tpl', '', 2, 5, '', '', '', '4', '', 'tpl', '', '', '', '\\Mf\\Statpage\\Lib\\Func\\GetTplList', '', 'a:2:{i:0;s:1:\"0\";i:1;s:1:\"1\";}', '', 'N;', 0, 'N;'),
   ('statpage', 'statpage', 0, 'tpl', '', 3, 0, '', '', '', '4', '', 'tpl', '', '', '', '\\Mf\\Statpage\\Lib\\Func\\GetTplList', '', 'a:2:{i:0;s:1:\"0\";i:1;s:1:\"1\";}', '', 'N;', 0, 'N;'),
   ('statpage', 'statpage', 0, 'title', '', 2, 10, '', '', 'cols=130 rows=3', '3', '', 'title', '', '', '', '', '', 'N;', '', 'N;', 0, 'N;'),
   ('statpage', 'statpage', 0, 'title', '', 3, 0, '', '', 'cols=130 rows=3', '3', '2', 'title', '', '', '', '', '', 'N;', '', 'N;', 0, 'N;'),
   ('statpage', 'statpage', 0, 'keywords', '', 2, 11, '', '', 'cols=130 rows=3', '3', '', 'keywords', '', '', '', '', '', 'N;', '', 'N;', 0, 'N;'),
   ('statpage', 'statpage', 0, 'keywords', '', 3, 0, '', '', 'cols=130 rows=3', '3', '2', 'keywords', '', '', '', '', '', 'N;', '', 'N;', 0, 'N;'),
   ('statpage', 'statpage', 0, 'description', '', 2, 12, '', '', 'cols=130 rows=3', '3', '', 'description', '', '', '', '', '', 'N;', '', 'N;', 0, 'N;'),
-  ('statpage', 'statpage', 0, 'name,content,keywords,description,title,tpl,page_type,seo_options,layout', 'a:3:{s:10:\"owner_user\";s:1:\"0\";s:11:\"owner_group\";s:1:\"0\";s:10:\"permission\";i:484;}', 0, 1, 'select statpage.*,\r\n(select title from statpage_text where locale=''$pole_dop0'' and statpage_text.statpage=statpage.id) as title ,\r\n(select keywords from statpage_text where locale=''$pole_dop0'' and statpage_text.statpage=statpage.id) as keywords,\r\n(select description from statpage_text where locale=''$pole_dop0'' and statpage_text.statpage=statpage.id) as description,\r\n(select content from statpage_text where locale=''$pole_dop0'' and statpage_text.statpage=statpage.id) as content,\r\n(select tpl from statpage_text where locale=''$pole_dop0'' and statpage_text.statpage=statpage.id) as tpl,\r\n(select page_type from statpage_text where locale=''$pole_dop0'' and statpage_text.statpage=statpage.id) as page_type,\r\n(select seo_options from statpage_text where locale=''$pole_dop0'' and statpage_text.statpage=statpage.id) as seo_options,\r\n(select layout from statpage_text where locale=''$pole_dop0'' and statpage_text.statpage=statpage.id) as layout\r\n\r\nfrom statpage order by name', '', '0,0,0,0', 'name', '', 'id', 'delete from statpage  where id=$id;\r\ndelete from statpage_text where statpage=$id', '', '', '', '', 'Mf\\Statpage\\Lib\\Func\\Save', 0x613A323A7B733A32343A22666F726D5F656C656D656E74735F6E65775F7265636F7264223B733A313A2231223B733A32343A22666F726D5F656C656D656E74735F6A6D705F7265636F7264223B733A313A2231223B7D, 'statpage', 1, NULL),
-  ('statpage', 'statpage', 0, '', '', 1, 0, '', '', 'onChange=this.form.submit()', '4', '', '', '', '', '', '\\Mf\\Statpage\\Lib\\Func\\GetLocales', '', 'a:2:{i:0;s:1:\"0\";i:1;s:1:\"0\";}', '', '', 0, ''),
+  ('statpage', 'statpage', 0, 'name,content,keywords,description,title,tpl,page_type', 'a:3:{s:10:\"owner_user\";s:1:\"0\";s:11:\"owner_group\";s:1:\"0\";s:10:\"permission\";i:484;}', 0, 1, 'select statpage.*,\r\n(select title from statpage_text where locale=''$pole_dop0'' and statpage_text.statpage=statpage.id) as title ,\r\n(select keywords from statpage_text where locale=''$pole_dop0'' and statpage_text.statpage=statpage.id) as keywords,\r\n(select description from statpage_text where locale=''$pole_dop0'' and statpage_text.statpage=statpage.id) as description,\r\n(select content from statpage_text where locale=''$pole_dop0'' and statpage_text.statpage=statpage.id) as content,\r\n(select tpl from statpage_text where locale=''$pole_dop0'' and statpage_text.statpage=statpage.id) as tpl,\r\n(select seo_options from statpage_text where locale=''$pole_dop0'' and statpage_text.statpage=statpage.id) as seo_options,\r\n(select page_type from statpage_text where locale=''$pole_dop0'' and statpage_text.statpage=statpage.id) as page_type\r\n\r\nfrom statpage order by name', '', '0,0,0,0', 'name', '', 'id', 'delete from statpage  where id=$id;\r\ndelete from statpage_text where statpage=$id', '', '', '', '', 'Mf\\Statpage\\Lib\\Func\\Save', 0x613A323A7B733A32343A22666F726D5F656C656D656E74735F6E65775F7265636F7264223B733A313A2231223B733A32343A22666F726D5F656C656D656E74735F6A6D705F7265636F7264223B733A313A2231223B7D, 'statpage', 1, NULL),
+  ('statpage', 'statpage', 0, '', '', 1, 0, '', '', 'onChange=this.form.submit()', '4', '', '', '', '', '', '\\Mf\\Statpage\\Lib\\Func\\GetLocales', '', 'a:3:{i:0;s:1:\"0\";i:1;s:1:\"0\";i:2;s:1:\"0\";}', '', '', 0, NULL),
   ('statpage', 'statpage', 0, 'name', '', 2, 1, '', '', 'size=80', '2', '', 'name', '', '', '', '', '', 'N;', '', 'N;', 0, 'N;'),
   ('statpage', 'statpage', 0, 'name', '', 3, 0, '', '', 'size=80', '2', '2', 'name', '', '', '', '', '', 'N;', '', 'N;', 0, 'N;'),
-  ('statpage', 'statpage', 0, 'content', '', 2, 7, '', '[\"statpage\"][''media_folder'']', ',', '39', NULL, 'content', NULL, '', '\\Mf\\Statpage\\Lib\\Func\\ClearContent', '', '', 'a:4:{i:0;s:3:\"600\";i:1;s:3:\"800\";i:2;s:7:\"default\";i:3;s:7:\"default\";}', '', 'N;', NULL, 'N;'),
+  ('statpage', 'statpage', 0, 'content', '', 2, 6, '', '[\"statpage\"][''media_folder'']', ',', '39', '', 'content', '', '', '\\Mf\\Statpage\\Lib\\Func\\ClearContent', '', '', 'a:4:{i:0;s:3:\"600\";i:1;s:3:\"800\";i:2;s:7:\"default\";i:3;s:7:\"default\";}', '', 'N;', 0, 'N;'),
   ('statpage', 'statpage', 0, 'content', '', 3, 0, '', '[\"statpage\"][''media_folder'']', ',', '39', '', 'content', '', '', '\\Mf\\Statpage\\Lib\\Func\\ClearContent', '', '', 'a:4:{i:0;s:3:\"600\";i:1;s:3:\"800\";i:2;s:7:\"default\";i:3;s:7:\"default\";}', '', 'N;', 0, 'N;'),
   ('statpage', 'statpage', 0, 'description', '', 3, 0, '', '', 'cols=130 rows=3', '3', '2', 'description', '', '', '', '', '', 'N;', '', 'N;', 0, 'N;'),
   ('statpage', 'statpage', 0, 'url', '', 2, 2, '', '', 'size=120', '2', '', 'url', '', '\\Mf\\Statpage\\Lib\\Func\\CreateUrl', '', '', '', 'N;', '', 'N;', 0, 'N;'),
@@ -38,13 +40,12 @@ INSERT INTO `design_tables` (`interface_name`, `table_name`, `table_type`, `col_
   ('statpage', 'statpage', 0, 'language', '', 2, 0, '', '', '', '0', '', 'pole_dop0', '', '', '', '', '', '', '', '', 0, ''),
   ('statpage', 'statpage', 0, 'language', '', 3, 0, '', '0,0', '', '0', '', 'pole_dop0', '', '', '', '', '', '', '', '', 0, ''),
   ('statpage', 'statpage', 0, 'page_type', '', 2, 4, '', '', '', '4', '', 'page_type', '', '', '', '\\Mf\\Statpage\\Lib\\Func\\GetPageType', '', 'a:2:{i:0;s:1:\"0\";i:1;s:1:\"0\";}', '', 'N;', 0, 'N;'),
-  ('statpage', 'statpage', 0, 'page_type', '', 3, NULL, '', NULL, '', '4', NULL, 'page_type', NULL, '', '', '\\Mf\\Statpage\\Lib\\Func\\GetPageType', '', 'a:3:{i:0;s:1:\"0\";i:1;s:1:\"0\";i:2;s:1:\"0\";}', '', 'N;', NULL, 'N;'),
+  ('statpage', 'statpage', 0, 'page_type', '', 3, 0, '', '', '', '4', '', 'page_type', '', '', '', '\\Mf\\Statpage\\Lib\\Func\\GetPageType', '', 'a:2:{i:0;s:1:\"0\";i:1;s:1:\"1\";}', '', 'N;', 0, 'N;'),
   ('statpage', 'statpage', 0, 'sysname', '', 2, 2, '', '', 'size=80', '2', '', 'sysname', '', '', '', '', '', 'N;', '', 'N;', 0, 'N;'),
   ('statpage', 'statpage', 0, 'seo_options', '', 2, 14, '', NULL, '', '24', NULL, 'seo_options', NULL, '', '', '', '', 'N;', '', 'N;', NULL, 'N;'),
   ('statpage', 'statpage', 0, 'seo_options', '', 3, NULL, '', NULL, '', '24', NULL, 'seo_options', NULL, '', '', '', '', 'N;', '', 'N;', NULL, 'N;'),
   ('statpage', 'statpage', 0, 'layout', '', 2, 6, '', NULL, '', '4', NULL, 'layout', NULL, '', '', '\\Mf\\Statpage\\Lib\\Func\\GetLayoutList', '', 'a:3:{i:0;s:1:\"0\";i:1;s:1:\"1\";i:2;s:1:\"0\";}', '', 'N;', NULL, 'N;'),
   ('statpage', 'statpage', 0, 'layout', '', 3, NULL, '', NULL, '', '4', NULL, 'layout', NULL, '', '', '\\Mf\\Statpage\\Lib\\Func\\GetLayoutList', '', 'a:3:{i:0;s:1:\"0\";i:1;s:1:\"1\";i:2;s:1:\"0\";}', '', 'N;', NULL, 'N;');
-
 
 
 INSERT INTO `design_tables_text_interfase` (`language`, `table_type`, `interface_name`, `item_name`, `text`) VALUES 
@@ -64,8 +65,6 @@ INSERT INTO `design_tables_text_interfase` (`language`, `table_type`, `interface
   ('ru_RU', 0, 'statpage', 'caption_col_content', 'Контент'),
   ('ru_RU', 0, 'statpage', 'caption_col_seo_options', 'SEO опции'),
   ('ru_RU', 0, 'statpage', 'caption_col_layout', 'Макет');
-  
-
 --
 -- Table structure for table `statpage`
 --
