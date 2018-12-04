@@ -6,6 +6,8 @@
 namespace Mf\Statpage;
 
 use Zend\Router\Http\Segment;
+use Zend\Cache\Storage\Plugin\Serializer;
+use Zend\Cache\Storage\Adapter\Filesystem;
 
 /*
 для других языков создайте дополнительные маршрутя по аналогии с ru_RU
