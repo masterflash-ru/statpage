@@ -18,7 +18,7 @@ class GetControllersInfoFactory
 
 public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-		$connection=$container->get('ADO\Connection');
+		$connection=$container->get('DefaultSystemDb');
        $Router=$container->get("Application")->getMvcEvent()->getRouter();
 	   $config = $container->get('Config');
         return new $requestedName($connection,$Router,$config,$options);
