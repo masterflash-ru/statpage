@@ -4,7 +4,8 @@
  */
 
 namespace Mf\Statpage\Exception;
+use Exception;
 
-class InvalidPageType extends \Exception implements ExceptionInterface
+class InvalidPageType extends Exception 
 {
 }

@@ -9,7 +9,7 @@ use ADO\Service\RecordSet;
 use ADO\Service\Command;
 use Mf\Statpage\Entity\Page;
 use Mf\Statpage\Entity\SeoOptions;
-use Exception;
+use Mf\Statpage\Exception;
 
 class Statpage 
 {
@@ -88,7 +88,7 @@ protected function Load($url,$type="url")
     $rs=new RecordSet();
 
     $rs->Open($c);
-    if ($rs->EOF) {throw new  Exception("Запись в STATPAGE не найдена");}
+    if ($rs->EOF) {throw new  Exception\NotFoundException("Запись в STATPAGE не найдена");}
     $resultSet = new HydratingResultSet(new ReflectionHydrator, new Page);
     $resultSet->initialize($rs);
 
@@ -162,7 +162,7 @@ return $items;
   /*устновить тип считываемых страниц*/
 public function SetPageType($page_type)
 {
-  if (!in_array($page_type,$this->pageStatusEnable)) {throw new Exception ("Не поддерживаемый тип страниц");}
+  if (!in_array($page_type,$this->pageStatusEnable)) {throw new Exception\InvalidPageTypeException ("Не поддерживаемый тип страниц");}
   $this->page_type=$page_type;
 }
 
@@ -178,7 +178,7 @@ public function SetLocale($locale=NULL)
   if (!empty($locale)) {
         //проверим на допустимость имени локали
         if (!in_array($locale,$this->config["locale_enable_list"])) {
-            throw new Exception("Попытка установить не допустимую локаль");
+            throw new Exception\InvalidLocaleException("Попытка установить не допустимую локаль");
         }
         $this->locale=$locale;
     }

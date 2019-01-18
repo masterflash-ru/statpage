@@ -4,7 +4,8 @@
  */
 
 namespace Mf\Statpage\Exception;
+use Exception;
 
-class EmptyException extends \Exception implements ExceptionInterface
+class NotFoundException extends \Exception 
 {
 }

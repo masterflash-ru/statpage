@@ -9,6 +9,7 @@ namespace Mf\Statpage\Controller\Plugin;
 use Zend\Mvc\Controller\Plugin\AbstractPlugin;
 use Mf\Statpage\Service\Statpage as Statpage_service;
 use Exception;
+use Mf\Statpage\Exception as StatPageException;
 use Zend\Stdlib\ArrayUtils;
 
 /**
@@ -103,7 +104,7 @@ public function __invoke($sysname = null,array $options=[])
             return $this->statpage_service->LoadFromSysname($sysname);
         } catch (Exception $e){
             if (strtolower($this->options["errMode"])=="empty"){return null;}
-            throw new Exception("Страница $sysname не найдена, возможно у нее установлен не верный статус.");
+            throw new StatPageException\NotFoundException("Страница $sysname не найдена, возможно у нее установлен не верный статус.");
         }
     }
 }

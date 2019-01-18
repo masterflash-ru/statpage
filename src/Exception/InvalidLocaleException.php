@@ -4,7 +4,8 @@
  */
 
 namespace Mf\Statpage\Exception;
+use Exception;
 
-class LocaleException extends \Exception implements ExceptionInterface
+class InvalidLocaleException extends Exception
 {
 }
