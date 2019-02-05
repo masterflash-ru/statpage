@@ -95,7 +95,7 @@ CREATE TABLE `statpage_text` (
   `locale` char(10) NOT NULL COMMENT 'имя локали (ru_RU)',
   `title` varchar(255) NOT NULL DEFAULT '',
   `keywords` varchar(255) NOT NULL DEFAULT '',
-  `description` varchar(255) NOT NULL DEFAULT '',
+  `description` varchar(5000) NOT NULL DEFAULT '',
   `tpl` char(127) DEFAULT NULL COMMENT 'имя шаблона-контейнера',
   `page_type` int(11) DEFAULT NULL COMMENT 'типа страницы: 1-публиковать на сайте, 0-нет, 2-внутренняя',
   `content` text COMMENT 'контент страницы',
