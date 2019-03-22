@@ -151,7 +151,8 @@ return [
                                          ]
                                         ]),
                     
-                    ColModelHelper::ckeditor("content",["label"=>"Статья полностью",
+                    ColModelHelper::ckeditor("content",[
+                        "label"=>"Статья полностью",
                         "plugins"=>[
                             "edit"=>[
                                 "ClearContent"=>[],
@@ -160,7 +161,18 @@ return [
                                 "ClearContent"=>[],
                             ],
                         ],
-                                                       ]),
+                    ]),
+                    ColModelHelper::text("lastmod",[
+                        "hidden"=>true,
+                        "plugins"=>[
+                            "edit"=>[
+                                "LastMod"=>[],
+                            ],
+                            "add"=>[
+                                "LastMod"=>[],
+                            ],
+                        ],
+                        ]),
                     ColModelHelper::textarea("title",["label"=>"TITLE","hidden"=>true,"editrules"=>["edithidden"=>true]]),
                     ColModelHelper::textarea("keywords",["label"=>"KEYWORDS","hidden"=>true,"editrules"=>["edithidden"=>true]]),
                     ColModelHelper::textarea("description",["label"=>"DESCRIPTION","hidden"=>true,"editrules"=>["edithidden"=>true]]),
