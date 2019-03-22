@@ -80,9 +80,8 @@ protected function Load($url,$type="url")
     $p=$c->CreateParameter('url', adChar, adParamInput, 127, $url);//генерируем объек параметров
     $c->Parameters->Append($p);//добавим в коллекцию
     $c->CommandText="select * 
-          from statpage_text,statpage 
+          from statpage 
               where page_type={$this->page_type} and 
-                                    statpage.id=statpage_text.statpage and 
                                     $type=:url and 
                                     locale='{$this->locale}'";
     $rs=new RecordSet();
@@ -121,10 +120,9 @@ protected function Load($url,$type="url")
         $rs=new RecordSet();
         $rs->CursorType = adOpenKeyset;
         $rs->open("select lastmod,url,seo_options
-            from statpage_text,statpage 
+            from statpage 
               where
                         page_type=1 and 
-                        statpage.id=statpage_text.statpage and 
                         locale='{$this->locale}'",$this->connection);
         $items=$rs->FetchEntityAll(Page::class);
         //пробежим и удалим если есть опции noindex или canonical
@@ -148,10 +146,9 @@ protected function Load($url,$type="url")
 public function getMaxLastMod()
 {
     $rs=new RecordSet();
-    $rs->open("select max(lastmod) as lastmod, count(*) as recordcount from statpage_text,statpage
+    $rs->open("select max(lastmod) as lastmod, count(*) as recordcount from statpage
             where 
               locale='".$this->locale."' and 
-              statpage.id=statpage_text.statpage and
               url>'' and 
               page_type =1",$this->connection);
     $items=$rs->FetchEntity(Page::class);

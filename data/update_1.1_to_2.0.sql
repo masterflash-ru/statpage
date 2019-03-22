@@ -15,6 +15,13 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+delete from design_tables where table_name='statpage';
+delete from design_tables where table_name='statpage_text';
+
+
+DROP TABLE IF EXISTS `st`;
+rename table statpage to `st`;
+
 
 DROP TABLE IF EXISTS `statpage`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -42,11 +49,15 @@ CREATE TABLE `statpage` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='статичные страницы';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+insert into statpage (name,sysname,url,locale,tpl,page_type,lastmod,seo_options,layout,content,title,keywords,description)
+select s.name,s.sysname,s.url,
+t.locale,t.tpl,t.page_type,t.lastmod,t.seo_options,t.layout,t.content,t.title,t.keywords,t.description
+ from st as s, statpage_text as t where s.id=t.statpage;
 
 
---
--- Dumping routines for database 'simba4'
---
+DROP TABLE `statpage_text`;
+DROP TABLE `st`;
+
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

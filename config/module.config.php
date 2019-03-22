@@ -97,5 +97,17 @@ return [
     "locale_enable_list"=>["ru_RU"],
     /*Канонический адрес сайта*/
     "ServerDefaultUri"=>"http://".trim($_SERVER["SERVER_NAME"],"w."),
-
+    
+    /*сетка для админки*/
+    "interface"=>[
+        "statpage"=>__DIR__."/admin.statpage.php",
+    ],
+    /*плагины для сетки JqGrid*/
+    "JqGridPlugin"=>[
+        'factories' => [
+            Service\Admin\JqGrid\Plugin\GetStatusStatpage::class=>Service\Admin\JqGrid\Plugin\FactoryGetConfigStatpage::class,
+            Service\Admin\JqGrid\Plugin\GetTplStatpage::class=>Service\Admin\JqGrid\Plugin\FactoryGetConfigStatpage::class,
+            Service\Admin\JqGrid\Plugin\GetLayoutStatpage::class=>Service\Admin\JqGrid\Plugin\FactoryGetConfigStatpage::class,
+        ],
+    ],
 ];
