@@ -40,7 +40,7 @@ class GetControllersInfo
 		$rez['mvc']=[];
 		
 		
-		$rs=$this->connection->Execute("select name,url from statpage_text,statpage where page_type=1  and statpage.id=statpage_text.statpage and locale='{$this->options["locale"]}' order by name");
+		$rs=$this->connection->Execute("select name,url from statpage where page_type=1 and locale='{$this->options["locale"]}' order by name");
 		
 			while (!$rs->EOF)
 					{
