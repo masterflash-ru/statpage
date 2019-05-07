@@ -98,6 +98,13 @@ return [
     /*Канонический адрес сайта*/
     "ServerDefaultUri"=>"http://".trim($_SERVER["SERVER_NAME"],"w."),
     
+    /*доступ к панели управления*/
+    "permission"=>[
+        "objects" =>[
+            "interface/statpage" => [1,1,0760],
+        ],
+    ],
+
     /*сетка для админки*/
     "interface"=>[
         "statpage"=>__DIR__."/admin.statpage.php",
