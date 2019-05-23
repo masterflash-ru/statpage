@@ -20,7 +20,6 @@ class GetControllersInfo
 	
     public function __construct($connection,$Router,$config,$options) 
     {
-		
 		$this->Router=$Router;
 		$this->options=$options;
 		$this->connection=$connection;

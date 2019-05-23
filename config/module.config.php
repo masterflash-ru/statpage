@@ -94,7 +94,6 @@ return [
     ],
 
     "locale_default"=>"ru_RU",
-    "locale_enable_list"=>["ru_RU"],
     /*Канонический адрес сайта*/
     "ServerDefaultUri"=>"http://".trim($_SERVER["SERVER_NAME"],"w."),
     

@@ -32,7 +32,7 @@ public function onBootstrap(MvcEvent $event)
 	$sharedEventManager->attach("simba.admin", "GetControllersInfoAdmin", [$this, 'GetControllersInfoAdmin']);
     
     //объявление слушателя для получения всех MVC адресов разбитых по языкам
-    $sharedEventManager->attach("simba.admin", "GetMvc", function($event) use ($ServiceManager){
+    $sharedEventManager->attach("simba.admin", "GetMvc", function(Event $event) use ($ServiceManager){
         $category=$event->getParam("category",NULL);
         $service=$ServiceManager->build(GetControllersInfo::class,["category"=>$category]);
         return $service->GetMvc();
@@ -40,7 +40,7 @@ public function onBootstrap(MvcEvent $event)
     
     
     //слушатель для генерации карты сайта
-    $sharedEventManager->attach("simba.sitemap", "GetMap", function($event) use ($ServiceManager){
+    $sharedEventManager->attach("simba.sitemap", "GetMap", function(Event $event) use ($ServiceManager){
         $name=$event->getParam("name",NULL);
         $type=$event->getParam("type",NULL);
         $locale=$event->getParam("locale",NULL);
