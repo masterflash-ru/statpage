@@ -33,7 +33,7 @@ class GetControllersInfo
     public function getMvc()
     {
 		//данный модуль содержит только сайтовские описатели описатели
-		if ($this->options["category"]!="frontend") {return [];}
+		if ($this->options["category"]!="frontend") {return ;}
 
 		//Линейные таблицы
 		$info["page"]["description"]="Просто страницы (опубликованные)";
