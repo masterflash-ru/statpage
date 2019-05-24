@@ -79,7 +79,7 @@ return [
 
                     ColModelHelper::text("name",["label"=>"Имя элемента","width"=>300,"editoptions" => ["size"=>120 ]]),
                     ColModelHelper::text("url",["label"=>"URL (/page/)",
-                        "width"=>400,
+                        "width"=>200,
                         //"hidden"=>true,
                         "editrules"=>[
                             "edithidden"=>true,
@@ -176,7 +176,15 @@ return [
                     ColModelHelper::textarea("title",["label"=>"TITLE","hidden"=>true,"editrules"=>["edithidden"=>true]]),
                     ColModelHelper::textarea("keywords",["label"=>"KEYWORDS","hidden"=>true,"editrules"=>["edithidden"=>true]]),
                     ColModelHelper::textarea("description",["label"=>"DESCRIPTION","hidden"=>true,"editrules"=>["edithidden"=>true]]),
-                ColModelHelper::seo("seo_options",["label"=>"Опции SEO","width"=>200]),
+                ColModelHelper::seo("seo_options",
+                                    [
+                                        "label"=>"Опции SEO",
+                                        "width"=>200,
+                                        "hidden"=>true,
+                                        "editrules"=>[
+                                            "edithidden"=>true,
+                                        ],
+                                    ]),
                 ColModelHelper::cellActions(),
                     
                 
