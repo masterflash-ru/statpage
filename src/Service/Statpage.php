@@ -30,6 +30,9 @@ class Statpage
     {
         $this->connection = $connection;
         $this->cache = $cache;
+        if (empty($config["locale_enable_list"])){
+            $config["locale_enable_list"]=[$config["locale_default"]];
+        }
         $this->config=$config;
         $this->page_type=(int)$config["statpage"]["defaultStatus"];
         $this->locale=$config["locale_default"];
@@ -159,7 +162,9 @@ return $items;
   /*устновить тип считываемых страниц*/
 public function SetPageType($page_type)
 {
-  if (!in_array($page_type,$this->pageStatusEnable)) {throw new Exception\InvalidPageTypeException ("Не поддерживаемый тип страниц");}
+  if (!in_array($page_type,$this->pageStatusEnable)) {
+      throw new Exception\InvalidPageTypeException ("Не поддерживаемый тип страниц");
+  }
   $this->page_type=$page_type;
 }
 
