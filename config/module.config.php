@@ -95,7 +95,7 @@ return [
 
     "locale_default"=>"ru_RU",
     /*Канонический адрес сайта*/
-    "ServerDefaultUri"=>"http://".trim($_SERVER["SERVER_NAME"],"w."),
+    "ServerDefaultUri"=>$_SERVER["REQUEST_SCHEME"]."://".trim($_SERVER["SERVER_NAME"],"w."),
     
     /*доступ к панели управления*/
     "permission"=>[
