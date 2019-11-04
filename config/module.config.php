@@ -9,6 +9,13 @@ use Zend\Router\Http\Segment;
 use Zend\Cache\Storage\Plugin\Serializer;
 use Zend\Cache\Storage\Adapter\Filesystem;
 
+
+if (empty($_SERVER["REQUEST_SCHEME"])){
+    $_SERVER["REQUEST_SCHEME"]="http";
+}
+if  (empty($_SERVER["SERVER_NAME"])){
+    $_SERVER["SERVER_NAME"]="localhost";
+}
 /*
 для других языков создайте дополнительные маршрутя по аналогии с ru_RU
 обязательно в имени маршрута должна быть локаль
