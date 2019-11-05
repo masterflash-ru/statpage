@@ -12,9 +12,9 @@ class StatpageFactory implements FactoryInterface
 
 public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-		 $connection=$container->get('DefaultSystemDb');
-		 $cache = $container->get('DefaultSystemCache');
 		 $config = $container->get('Config');
+		 $connection=$container->get($config["statpage"]["config"]["database"]);
+		 $cache = $container->get($config["statpage"]["config"]["cache"]);
         
         return new $requestedName($connection, $cache,$config);
     }

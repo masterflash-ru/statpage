@@ -87,6 +87,10 @@ return [
         ],
     ],
     "statpage"=>[
+        "config"=>[
+            "database"  =>  "DefaultSystemDb",
+            "cache"     =>  "DefaultSystemCache",
+        ],
         'tpl'=>[                                  //пользовательские шаблоны вывода контента
         ],
         'layout'=>[                               //имена макетов которые имеются в приложении
