@@ -4,12 +4,13 @@ namespace Mf\Statpage;
 
 use Mf\Migrations\AbstractMigration;
 use Mf\Migrations\MigrationInterface;
+use Zend\Db\Sql\Ddl;
 
 class Version20191104155459 extends AbstractMigration implements MigrationInterface
 {
     public static $description = "Create table for Statpage";
 
-    public function up($schema)
+    public function up($schema,$adapter)
     {
         switch ($this->db_type){
             case "mysql":{
@@ -42,16 +43,9 @@ class Version20191104155459 extends AbstractMigration implements MigrationInterf
         }
     }
 
-    public function down($schema)
+    public function down($schema,$adapter)
     {
-        switch ($this->db_type){
-            case "mysql":{
-                $this->addSql("drop table `statpage`");
-                break;
-            }
-            default:{
-                throw new \Exception("the database {$this->db_type} is not supported !");
-            }
-        }
+        $drop = new Ddl\DropTable('statpage');
+        $this->addSql($drop);
     }
 }
