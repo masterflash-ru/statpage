@@ -2,7 +2,7 @@
 namespace Mf\Statpage\View\Helper\Factory;
 
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use Mf\Statpage\Service\Statpage as Statpage_service;
 
 /**

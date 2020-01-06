@@ -2,7 +2,7 @@
 namespace Mf\Statpage\Service;
 
 //для заполнения сущностей в стилистике ZF
-use Zend\Hydrator\Reflection as ReflectionHydrator;
+use Laminas\Hydrator\Reflection as ReflectionHydrator;
 use ADO\ResultSet\HydratingResultSet;
 use Locale;
 use ADO\Service\RecordSet;

@@ -7,8 +7,8 @@
 namespace Mf\Statpage\Controller\Plugin;
 
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\FactoryInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
 
 use Mf\Statpage\Service\Statpage;
 
@@ -26,7 +26,7 @@ class StatpageFactory implements FactoryInterface
     /**
      * Create and return Statpage instance
      *
-     * For use with zend-servicemanager v2; proxies to __invoke().
+     * For use with Laminas-servicemanager v2; proxies to __invoke().
      *
      * @param ServiceLocatorInterface $container
      * @return Statpage

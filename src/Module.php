@@ -5,9 +5,9 @@
 
 namespace Mf\Statpage;
 
-use Zend\Mvc\MvcEvent;
-use Zend\Session\Container;
-use Zend\EventManager\Event;
+use Laminas\Mvc\MvcEvent;
+use Laminas\Session\Container;
+use Laminas\EventManager\Event;
 
 use Mf\Statpage\Service\GetControllersInfo;
 use Mf\Statpage\Service\GetMap;

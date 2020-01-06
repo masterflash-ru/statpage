@@ -4,7 +4,7 @@ namespace Mf\Statpage;
 
 use Mf\Migrations\AbstractMigration;
 use Mf\Migrations\MigrationInterface;
-use Zend\Db\Sql\Ddl;
+use Laminas\Db\Sql\Ddl;
 
 class Version20191104155459 extends AbstractMigration implements MigrationInterface
 {

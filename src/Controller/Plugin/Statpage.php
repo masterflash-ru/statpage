@@ -6,11 +6,11 @@
 namespace Mf\Statpage\Controller\Plugin;
 
 
-use Zend\Mvc\Controller\Plugin\AbstractPlugin;
+use Laminas\Mvc\Controller\Plugin\AbstractPlugin;
 use Mf\Statpage\Service\Statpage as Statpage_service;
 use Exception;
 use Mf\Statpage\Exception as StatPageException;
-use Zend\Stdlib\ArrayUtils;
+use Laminas\Stdlib\ArrayUtils;
 
 /**
  * 

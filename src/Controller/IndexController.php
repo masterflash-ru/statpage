@@ -6,8 +6,8 @@
 
 namespace Mf\Statpage\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
+use Laminas\Mvc\Controller\AbstractActionController;
+use Laminas\View\Model\ViewModel;
 use Exception;
 use Mf\Statpage\Service\Statpage;
 

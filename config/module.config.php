@@ -5,9 +5,9 @@
 
 namespace Mf\Statpage;
 
-use Zend\Router\Http\Segment;
-use Zend\Cache\Storage\Plugin\Serializer;
-use Zend\Cache\Storage\Adapter\Filesystem;
+use Laminas\Router\Http\Segment;
+use Laminas\Cache\Storage\Plugin\Serializer;
+use Laminas\Cache\Storage\Adapter\Filesystem;
 
 
 if (empty($_SERVER["REQUEST_SCHEME"])){

@@ -6,11 +6,11 @@
 
 namespace Mf\Statpage\View\Helper;
 
-use Zend\View\Helper\AbstractHelper;
+use Laminas\View\Helper\AbstractHelper;
 use Mf\Statpage\Service\Statpage as Statpage_service;
 use Exception;
 use Mf\Statpage\Exception as StatPageException;
-use Zend\Stdlib\ArrayUtils;
+use Laminas\Stdlib\ArrayUtils;
 /**
  * помощник - вывода стат страниц
  */
